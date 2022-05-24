@@ -1,0 +1,15 @@
+.contact_title {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 10px;
+}
+.all_input {
+  margin-top: 30px;
+}
+.submit_btn {
+  margin-top: 25px;
+  margin-left: 150px;
+}

@@ -1,0 +1,10 @@
+.aboutmenu {
+  width: 10rem;
+  top: 120px;
+  position: none;
+  list-style: none;
+  text-align: start;
+}
+.aboutmenu_clicked {
+  display: none;
+}
