@@ -6,7 +6,7 @@ const MyBlog = () => {
   const [getDataAdd, setGetDataAdd] = useState([]);
 
   useEffect(() => {
-    const dataFromAdd = localStorage.getItem("detailofAdd");
+    const dataFromAdd = localStorage.getItem("BlogData");
     if (dataFromAdd !== null) setGetDataAdd(JSON.parse(dataFromAdd));
   }, []);
 
@@ -15,7 +15,7 @@ const MyBlog = () => {
       return index !== elem.idforcred;
     });
     setGetDataAdd(updatedData);
-    localStorage.setItem("detailofAdd", JSON.stringify(updatedData));
+    localStorage.setItem("BlogData", JSON.stringify(updatedData));
     toast.success("Blog Deleted");
   };
   return (

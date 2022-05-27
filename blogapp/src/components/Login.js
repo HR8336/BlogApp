@@ -7,39 +7,32 @@ const Login = () => {
   const [emailofLogin, setEmailofLogin] = useState("");
   const [passwordofLogin, setpasswordofLogin] = useState("");
   const [getdatals, setGetdatals] = useState([]);
-  // const [interestofLogged , setInterestofLogged] = useState([]);
 
   useEffect(() => {
     const getdata = localStorage.getItem("detail");
     if (getdata !== null) setGetdatals(JSON.parse(getdata));
   }, []);
-  // const adminEmail = ["harsh.zadafiya@portpro.io"];
-  // const adminPassword = ["123456"];
-  // console.log("adminEmail", adminEmail[0]);
-  // console.log("adminPassword", adminPassword[0]);
-  // const admin = () => {
-  const adminEmail = ["harsh.zadafiya@portpro.io"];
+
+  const adminEmail = [
+    "harsh.zadafiya@portpro.io",
+    "harsh.zadafiya13@portpro.io",
+  ];
   const adminPassword = ["12345"];
 
-  // const isAdmin = getdatals.find(
-  //     (el) => el.email === (adminEmail
-  //   );
-  //   return isAdmin;
-  // };
+  const isUser = getdatals.find(
+    (el) =>
+      (el.email === emailofLogin || el.mobile === emailofLogin) &&
+      el.passWord === passwordofLogin
+  );
 
   const user = () => {
-    const isUser = getdatals.find(
-      (el) =>
-        (el.email === emailofLogin || el.mobile === emailofLogin) &&
-        el.passWord === passwordofLogin
-    );
-
     if (isUser) {
       localStorage.setItem("loggedUser", JSON.stringify(isUser));
       toast.success("Successful Login");
       localStorage.setItem("email", JSON.stringify(emailofLogin));
       localStorage.setItem("Role", "User");
     } else {
+      navigate("/login");
       toast.error("Wrong Email or Password!!");
     }
     return isUser;
@@ -49,23 +42,25 @@ const Login = () => {
     e.preventDefault();
     navigate("/signup");
   };
+
   const loginPage = (e) => {
     e.preventDefault();
     const data = user();
-    // const adminofdata = admin();
-
     if (
-      emailofLogin === adminEmail[0] &&
+      emailofLogin === (adminEmail[0] || adminEmail[1]) &&
       passwordofLogin === adminPassword[0]
     ) {
-      navigate("/admin");
-      localStorage.setItem("Role", "Admin");
-      localStorage.setItem("isLoggedUser", true);
+      if (isUser) {
+        navigate("/admin");
+        localStorage.setItem("Role", "Admin");
+        localStorage.setItem("isLoggedUser", true);
+      }
     } else if (data) {
       navigate("/home/allblog");
       localStorage.setItem("isLoggedUser", true);
     }
   };
+
   const onEmail = (e) => {
     setEmailofLogin(e.target.value);
   };

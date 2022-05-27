@@ -1,28 +1,41 @@
 import BlogData from "./BlogData";
 import NavHomes from "./NavHomes";
+import { BsSave2 } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 const AllBlog = () => {
   const [getDataAdd, setGetDataAdd] = useState([]);
-  const [interestedValue, setInterestedValue] = useState([]);
-  // const getInterestedValue = JSON.parse(
-  //   localStorage.getItem("interestedValue")
-  // );
 
   useEffect(() => {
-    const dataFromAdd = localStorage.getItem("detailofAdd");
-    if (dataFromAdd !== null) setGetDataAdd(JSON.parse(dataFromAdd));
-  }, []);
-  useEffect(() => {
-    const loggedUser = localStorage.getItem("loggedUser");
-    if (loggedUser != null) setInterestedValue(JSON.parse(loggedUser));
-  }, []);
-  const getmail = JSON.parse(localStorage.getItem("email"));
-  const value = interestedValue.interstedValue;
-  console.log("interestedValue", value);
+    const getInterest = JSON.parse(localStorage.getItem("loggedUser"));
+    const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
+    const getmail = JSON.parse(localStorage.getItem("email"));
 
-  const getdatavalue = getDataAdd.map((elem) => {
-    return console.log("value", elem.interestedValue);
-  });
+    if (getInterest) {
+      if (dataFromAdd) {
+        let filteredData = [];
+        const selfBlog = dataFromAdd.filter((el) => el.id === getmail);
+
+        const withOutId = dataFromAdd.filter((el) => el.id !== getmail);
+
+        const h = withOutId.forEach((el) => {
+          el.interstedValue.forEach((element) => {
+            if (getInterest.interstedValue.includes(element)) {
+              filteredData.push(el);
+            }
+          });
+        });
+
+        setGetDataAdd([...filteredData, ...selfBlog]);
+        console.log(getDataAdd);
+      }
+    }
+  }, []);
+
+  const handleClickofSave = () => {
+    toast.success("Bloged Saved");
+    
+  };
 
   return (
     <>
@@ -30,11 +43,10 @@ const AllBlog = () => {
         <NavHomes />
         <div>
           <div>
-            {getDataAdd
-              .filter((elem) => elem.interstedValue === value)
-              .map((elem, id) => {
-                return (
-                  <>
+            {getDataAdd.map((elem) => {
+              return (
+                <>
+                  <div>
                     <div>
                       <BlogData
                         title={elem.title}
@@ -42,26 +54,21 @@ const AllBlog = () => {
                         description={elem.description}
                       />
                     </div>
-                  </>
-                );
-              })}
-          </div>
-          <div>
-            {getDataAdd
-              .filter((elem) => elem.id === getmail)
-              .map((elem, id) => {
-                return (
-                  <>
-                    <div>
-                      <BlogData
-                        title={elem.title}
-                        interstedValue={elem.interstedValue}
-                        description={elem.description}
+                    <div className="mb-5">
+                      <BsSave2
+                        onClick={handleClickofSave}
+                        cursor="pointer"
+                        style={{
+                          height: "25px",
+                          width: "25px",
+                          marginLeft: "450px",
+                        }}
                       />
                     </div>
-                  </>
-                );
-              })}
+                  </div>
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

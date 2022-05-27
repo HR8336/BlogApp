@@ -4,25 +4,19 @@ import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-// import BlogData from "./BlogData";
 
 const MyBlog = () => {
   const [getDataAdd, setGetDataAdd] = useState([]);
-  const [isEditItem, setIsEditItem] = useState(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const dataFromAdd = localStorage.getItem("detailofAdd");
+    const dataFromAdd = localStorage.getItem("BlogData");
     if (dataFromAdd !== null) setGetDataAdd(JSON.parse(dataFromAdd));
   }, []);
   const getmail = JSON.parse(localStorage.getItem("email"));
   const handleEdit = (idforcred) => {
-    let newEditItem = getDataAdd.find((elem) => {
-      return elem.idforcred === idforcred;
-    });
-    setGetDataAdd(newEditItem);
-    setIsEditItem(idforcred);
-    navigate(`/home/editblog/${idforcred}`, { state: { newEditItem } });
+    navigate(`/home/addblog/${idforcred}`);
   };
 
   const handleDelete = (index) => {
@@ -30,12 +24,10 @@ const MyBlog = () => {
       return index !== elem.idforcred;
     });
     setGetDataAdd(updatedData);
-    localStorage.setItem("detailofAdd", JSON.stringify(updatedData));
+    localStorage.setItem("BlogData", JSON.stringify(updatedData));
     toast.success("Blog Deleted");
   };
-  // useEffect(() => {
-  //   localStorage.setItem("lists", JSON.stringify(getDataAdd));
-  // }, [getDataAdd]);
+
   return (
     <>
       <div>
@@ -47,12 +39,6 @@ const MyBlog = () => {
               .map((elem, id) => {
                 return (
                   <>
-                    {/* <BlogData
-                  title={elem.title}
-                  interstedValue={elem.interstedValue}
-                  description={elem.description}
-                  
-                /> */}
                     <div
                       key={id}
                       className="card mb-4"

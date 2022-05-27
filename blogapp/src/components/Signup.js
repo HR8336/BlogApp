@@ -147,7 +147,7 @@ const Signup = () => {
             style={{ width: "350px" }}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-4">
           <label htmlFor="aboutMe" className="form-label">
             About Me
           </label>
@@ -161,32 +161,30 @@ const Signup = () => {
             style={{ width: "350px" }}
           />
         </div>
-        <label className="mb-2">Gender :</label>
-        <div className="btn-group ms-2 mb-3" role="group">
+        <p className="mb-2">Gender </p>
+        <div className="form-check">
           <input
+            className="form-check-input"
             type="radio"
-            className="btn-check"
-            name="btnradio"
-            id="btnradio1"
-            autocomplete="off"
+            name="flexRadioDefault"
+            id="flexRadioDefault1"
             checked
           />
-          <label className="btn btn-outline-primary" htmlFor="btnradio1">
+          <label className="form-check-label" htmlFor="flexRadioDefault1">
             Male
           </label>
-
+        </div>
+        <div className="form-check">
           <input
+            className="form-check-input"
             type="radio"
-            className="btn-check"
-            name="btnradio"
-            id="btnradio2"
-            autocomplete="off"
+            name="flexRadioDefault"
+            id="flexRadioDefault2"
           />
-          <label className="btn btn-outline-primary" htmlFor="btnradio2">
+          <label className="form-check-label mb-3" htmlFor="flexRadioDefault2">
             Female
           </label>
         </div>
-
         <div className="mb-3">
           <p>
             Select Interest <span style={{ color: "red" }}>*</span>

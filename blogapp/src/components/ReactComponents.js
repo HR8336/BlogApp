@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddBlog from "./AddBlog";
 import AllBlog from "./AllBlog";
 import MyBlog from "./MyBlog";
+import SavedBlog from "./SavedBlog";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import AdminPage from "./AdminPage";
@@ -42,7 +43,7 @@ const ReactComponents = () => {
               }
             />
             <Route
-              path="home/editblog/:id"
+              path="home/addblog/:id"
               element={
                 <PrivateRoute>
                   <AddBlog />
@@ -81,6 +82,14 @@ const ReactComponents = () => {
               element={
                 <PrivateRoute>
                   <MyBlog />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/home/saveblog"
+              element={
+                <PrivateRoute>
+                  <SavedBlog />
                 </PrivateRoute>
               }
             />

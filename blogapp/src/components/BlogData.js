@@ -2,11 +2,11 @@
 import React from "react";
 // import { FiEdit } from "react-icons/fi";
 
-const BlogData = ({ title, interstedValue, description,  }) => {
+const BlogData = ({ title, interstedValue, description }) => {
   // const [getDataAdd, setGetDataAdd] = useState([]);
 
   // useEffect(() => {
-  //   const dataFromAdd = localStorage.getItem("detailofAdd");
+  //   const dataFromAdd = localStorage.getItem("BlogData");
   //   if (dataFromAdd !== null) setGetDataAdd(JSON.parse(dataFromAdd));
   // }, []);
   // const handleEdit = (e) => {
@@ -18,7 +18,7 @@ const BlogData = ({ title, interstedValue, description,  }) => {
       <div>
         <>
           <div
-            className="card mb-3"
+            className="card mb-2"
             style={{ width: "30rem", border: "solid black" }}
           >
             <div className="card-body">
@@ -27,13 +27,6 @@ const BlogData = ({ title, interstedValue, description,  }) => {
                 Topic : {interstedValue + ""}
               </h6>
               <p className="card-text">{description}</p>
-         
-              {/* <FiEdit
-                cursor="pointer"
-                onClick={handleEdit}
-                style={{ height: "25px", width: "25px" }}
-              /> */}
-            
             </div>
           </div>
         </>

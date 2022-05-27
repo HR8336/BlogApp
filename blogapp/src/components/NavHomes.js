@@ -15,7 +15,7 @@ const NavHomes = () => {
             <li className="nav-item">
               <Link
                 className="nav-link active"
-                style={{ marginRight: "120px" }}
+                style={{ marginRight: "90px" }}
                 to="/home/allblog"
               >
                 All Blog
@@ -24,12 +24,22 @@ const NavHomes = () => {
             <li className="nav-item">
               <Link
                 className="nav-link active"
-                style={{ marginRight: "120px" }}
+                style={{ marginRight: "90px" }}
                 to="/home/myblog"
               >
                 My Blog
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                className="nav-link active"
+                style={{ marginRight: "90px" }}
+                to="/home/saveblog"
+              >
+                Saved Blog
+              </Link>
+            </li>
+
             <li className="nav-item">
               <button className="btn btn-primary" onClick={handleAddBlog}>
                 Add Blog
