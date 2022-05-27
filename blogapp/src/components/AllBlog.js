@@ -3,8 +3,12 @@ import NavHomes from "./NavHomes";
 import { BsSave2 } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+
 const AllBlog = () => {
   const [getDataAdd, setGetDataAdd] = useState([]);
+  const [savedBlog, setSavedBlog] = useState(
+    JSON.parse(localStorage.getItem("SavedBlog")) || []
+  );
 
   useEffect(() => {
     const getInterest = JSON.parse(localStorage.getItem("loggedUser"));
@@ -27,14 +31,45 @@ const AllBlog = () => {
         });
 
         setGetDataAdd([...filteredData, ...selfBlog]);
-        console.log(getDataAdd);
       }
     }
   }, []);
 
-  const handleClickofSave = () => {
+  const handleClickofSave = (idforcred) => {
     toast.success("Bloged Saved");
-    
+    const getSavedBlog = getDataAdd.filter(
+      (ele) => ele.idforcred === idforcred
+    );
+
+    const getMail = JSON.parse(localStorage.getItem("email"));
+    const getAllUser = JSON.parse(localStorage.getItem("detail"));
+
+    const getMailOfUser = getAllUser.map((ele) => {
+      return ele.email;
+    });
+    console.log("getmailOfuser", getMailOfUser);
+    console.log("getMail", getMail);
+    const check = getMailOfUser.includes(getMail);
+    console.log(check);
+
+    // if (getMailOfUser.includes(getMail)) {
+    //   const setIdForBlog = getAllUser.map((data) => {
+    //     return { ...data, idForBlog: Math.trunc(Math.random() * 1000) + 1 };
+    //   });
+
+    //   localStorage.setItem("detail", JSON.stringify(setIdForBlog));
+    // }
+
+    const totalBlog = [...savedBlog, getSavedBlog];
+    const updateData = totalBlog.flat();
+    setSavedBlog(updateData);
+
+    localStorage.setItem("SavedBlog", JSON.stringify(updateData));
+
+    const setIdforBlog = updateData.map((data) => {
+      return { ...data, idForBlog: getMail };
+    });
+    localStorage.setItem("SavedBLogWithId", JSON.stringify(setIdforBlog));
   };
 
   return (
@@ -43,7 +78,7 @@ const AllBlog = () => {
         <NavHomes />
         <div>
           <div>
-            {getDataAdd.map((elem) => {
+            {getDataAdd.map((elem, id) => {
               return (
                 <>
                   <div>
@@ -56,7 +91,10 @@ const AllBlog = () => {
                     </div>
                     <div className="mb-5">
                       <BsSave2
-                        onClick={handleClickofSave}
+                        color="red"
+                        onClick={() => {
+                          handleClickofSave(elem.idforcred);
+                        }}
                         cursor="pointer"
                         style={{
                           height: "25px",

@@ -12,6 +12,7 @@ const Logout = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("interestedValue");
     localStorage.removeItem("Role");
+    // localStorage.removeItem("SavedBlog");
     localStorage.setItem("isLoggedUser", false);
   };
   return (

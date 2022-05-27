@@ -44,14 +44,13 @@ const AddBlog = () => {
   }, []);
 
   useEffect(() => {
-    
     if (params.id) {
       const getBlog = detailofAdd.find(
         (el) => el.idforcred.toString() === params.id
       );
       setTitle(getBlog.title);
       setDescription(getBlog.description);
-      let data = valueMaker(getBlog.selected, options);
+      let data = valueMaker(getBlog.interstedValue, options);
       setSelected(data);
     }
   }, [params.id, detailofAdd]);
@@ -60,19 +59,22 @@ const AddBlog = () => {
     e.preventDefault();
 
     if (params.id) {
-  
       const updateData = detailofAdd.map((ele) => {
         if (ele.idforcred.toString() === params.id)
           return {
             ...ele,
             title: title,
             description: description,
-            selected: selected.map((el) => el.value),
+            interstedValue: selected.map((el) => el.value),
           };
         return ele;
       });
 
       setDetailOfAdd(updateData);
+      setTitle("");
+      setDescription("");
+      setSelected([]);
+
       toast.success("Your Blog Edited!");
 
       localStorage.setItem("BlogData", JSON.stringify(updateData));
