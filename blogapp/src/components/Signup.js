@@ -27,14 +27,8 @@ const Signup = () => {
     const getDataOfMail = localStorage.getItem("detail");
     if (getDataOfMail !== null) setDataOfMail(JSON.parse(getDataOfMail));
   }, []);
-  // const mailof = dataOfMail.map((elem) => elem.email);
-  // console.log("mail in list", mailof);
-  // const abc = mailof.includes(email);
-  // console.log("abc", abc);
-  // console.log("mail", email);
 
   const submitData = (e) => {
-    console.log("sel1", selected);
     e.preventDefault();
     const mailofdata = dataOfMail.map((elm) => elm.email);
     if (mailofdata.includes(email)) {
@@ -46,7 +40,6 @@ const Signup = () => {
             if (passWord !== "") {
               let interstedValue = [];
               selected.forEach((obj) => interstedValue.push(obj.value));
-              const createid = Math.trunc(Math.random() * 1000) + 1;
 
               let data = {
                 name,
@@ -55,7 +48,6 @@ const Signup = () => {
                 about,
                 passWord,
                 interstedValue,
-                createid,
               };
 
               const totalData = [...detail, data];
@@ -68,7 +60,6 @@ const Signup = () => {
               setSelected([]);
 
               localStorage.setItem("detail", JSON.stringify(totalData));
-              // localStorage.setItem("id", JSON.stringify(createid));
 
               toast.success("Successfully Signup!");
               navigate("/login");
