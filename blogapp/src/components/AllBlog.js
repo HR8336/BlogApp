@@ -15,7 +15,8 @@ const AllBlog = () => {
     { label: "Health", value: "Health" },
   ];
 
-  const [AllData, setAllData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [elseData, setElseData] = useState([]);
   const [getDataAdd, setGetDataAdd] = useState([]);
   const [isRefresh, setIsRefresh] = useState(true);
   const [selected, setSelected] = useState([]);
@@ -46,6 +47,7 @@ const AllBlog = () => {
 
         setGetDataAdd([...selfBlog, ...filteredData]);
         setAllData([...selfBlog, ...filteredData]);
+        setElseData([...selfBlog, ...filteredData]);
       }
     }
   }, []);
@@ -89,57 +91,88 @@ const AllBlog = () => {
 
   const handleOnSearch = (e) => {
     setSearch(e.target.value);
-    if (e.target.value === "") {
-      setGetDataAdd(AllData);
-    } else {
-      filteredData();
-    }
+    filteredData.handleOnSearch = e.target.value;
+
+    filteredData();
   };
   const onSelect = (data) => {
     setSelected(data);
-    console.log(data.length);
-    if (data.length === 0) {
-      setGetDataAdd(AllData);
-    } else {
-      filteredData(data);
-    }
+
+    filteredData(data);
   };
 
-  // Search filter Function
-
   const filteredData = (obj) => {
-    let blogs = [...AllData];
+    let blogs = [...allData];
     const arr = [];
     const id = [];
 
-    if (search) {
-      blogs = blogs.filter((data) => {
-        return data.title.toLowerCase().includes(search.toLowerCase());
-      });
-      setGetDataAdd(blogs);
-    }
-    if (selected.length > -1) {
-      blogs.forEach((data) => {
-        obj.forEach((item) => {
-          console.log("data of select >>", item.value);
-          if (data.interstedValue.includes(item.value)) {
-            console.log("dataof blog >>", data.interstedValue);
-
-            if (!id.includes(data.idforcred)) {
-              console.log("blogid >>", id);
-              arr.push(data);
-              id.push(data.idforcred);
-            }
-          }
+    if (filteredData.handleOnSearch) {
+      console.log(">>>>>>");
+      console.log(filteredData.handleOnSearch);
+      if (selected.length > -1) {
+        console.log("length", selected.length);
+        console.log("before title  >>>>>>>", blogs);
+        blogs = getDataAdd.filter((data) => {
+          return data.title
+            .toLowerCase()
+            .includes(filteredData.handleOnSearch.toLowerCase());
         });
-      });
-
-      blogs = arr;
-
-      setGetDataAdd(blogs);
-      console.log(blogs);
+      } else {
+        blogs = blogs.filter((data) => {
+          return data.title
+            .toLowerCase()
+            .includes(filteredData.handleOnSearch.toLowerCase());
+        });
+      }
+      console.log("after title >>>>>>>", blogs);
+      // setGetDataAdd(blogs);
+      setAllData(blogs);
+    } else {
+      console.log("hello >>>>.");
+      console.log(elseData);
+      console.log(allData);
+      setGetDataAdd(elseData);
     }
+
+    if (selected.length > -1) {
+      if (search) {
+        if (obj) {
+          allData.forEach((data) => {
+            obj.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
+                }
+              }
+              return;
+            });
+          });
+
+          blogs = arr;
+        }
+      } else {
+        if (obj) {
+          getDataAdd.forEach((data) => {
+            obj.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
+                }
+              }
+              return;
+            });
+          });
+
+          blogs = arr;
+        }
+      }
+    }
+    // setGetDataAdd(blogs);
+    // setGetDataAdd(allData);
   };
+
   // Render Data
   return (
     <>
@@ -156,12 +189,14 @@ const AllBlog = () => {
               className="form-control"
             />
           </div>
+
           <div className="form-outline mx-5">
             <MultiSelect
+              type="search"
               options={options}
               value={selected}
               onChange={onSelect}
-              labelledBy="Select"
+              labelledBy="Select As Per Interest"
             />
           </div>
         </div>
