@@ -16,7 +16,6 @@ const AllBlog = () => {
   ];
 
   const [allData, setAllData] = useState([]);
-  const [elseData, setElseData] = useState([]);
   const [getDataAdd, setGetDataAdd] = useState([]);
   const [isRefresh, setIsRefresh] = useState(true);
   const [selected, setSelected] = useState([]);
@@ -47,7 +46,6 @@ const AllBlog = () => {
 
         setGetDataAdd([...selfBlog, ...filteredData]);
         setAllData([...selfBlog, ...filteredData]);
-        setElseData([...selfBlog, ...filteredData]);
       }
     }
   }, []);
@@ -95,10 +93,10 @@ const AllBlog = () => {
 
     filteredData();
   };
-  const onSelect = (data) => {
-    setSelected(data);
+  const onSelect = (obj) => {
+    setSelected(obj);
 
-    filteredData(data);
+    filteredData(obj);
   };
 
   const filteredData = (obj) => {
@@ -125,18 +123,16 @@ const AllBlog = () => {
         });
       }
       console.log("after title >>>>>>>", blogs);
-      // setGetDataAdd(blogs);
+      setGetDataAdd(blogs);
       setAllData(blogs);
-    } else {
-      console.log("hello >>>>.");
-      console.log(elseData);
-      console.log(allData);
-      setGetDataAdd(elseData);
     }
 
     if (selected.length > -1) {
       if (search) {
         if (obj) {
+          console.log("Data before select all", allData);
+          console.log("Data before select get", getDataAdd);
+
           allData.forEach((data) => {
             obj.forEach((item) => {
               if (data.interstedValue.includes(item.value)) {
@@ -148,12 +144,14 @@ const AllBlog = () => {
               return;
             });
           });
+          console.log("Data after select all", getDataAdd);
+          console.log("Data after select get", allData);
 
           blogs = arr;
         }
       } else {
         if (obj) {
-          getDataAdd.forEach((data) => {
+          blogs.forEach((data) => {
             obj.forEach((item) => {
               if (data.interstedValue.includes(item.value)) {
                 if (!id.includes(data.idforcred)) {
@@ -169,7 +167,7 @@ const AllBlog = () => {
         }
       }
     }
-    // setGetDataAdd(blogs);
+    setGetDataAdd(blogs);
     // setGetDataAdd(allData);
   };
 
