@@ -107,8 +107,8 @@ const AllBlog = () => {
       const arr = [];
       const id = [];
       if (filteredData.handleOnSearch) {
-        // console.log(">>>>>>", filteredData.handleOnSearch);
-        // console.log();
+        console.log(">>>>>>", filteredData.handleOnSearch);
+        console.log();
         let inputFilter = [];
         if (selected.length > -1) {
           console.log("length", selected.length);
