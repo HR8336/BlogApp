@@ -16,7 +16,6 @@ const AllBlog = () => {
   ];
 
   const [allData, setAllData] = useState([]);
-  const [selectFilterData, setSelectFilterData] = useState([]);
   const [getDataAdd, setGetDataAdd] = useState([]);
   const [isRefresh, setIsRefresh] = useState(true);
   const [selected, setSelected] = useState([]);
@@ -102,75 +101,71 @@ const AllBlog = () => {
 
   const filteredData = (obj) => {
     let blogs = [...allData];
+    console.log("AllData Change ..?", blogs);
+    const arr = [];
+    const id = [];
 
-    if (blogs) {
-      const arr = [];
-      const id = [];
+    if (blogs)
       if (filteredData.handleOnSearch) {
         console.log(">>>>>>", filteredData.handleOnSearch);
         console.log();
-        let inputFilter = [];
         if (selected.length > -1) {
           console.log("length", selected.length);
           console.log("before title  >>>>>>>", blogs);
-          inputFilter = getDataAdd.filter((data) => {
+          blogs = getDataAdd.filter((data) => {
             return data.title
               .toLowerCase()
               .includes(filteredData.handleOnSearch.toLowerCase());
           });
         } else {
-          blogs = allData.filter((data) => {
+          blogs = blogs.filter((data) => {
             return data.title
               .toLowerCase()
               .includes(filteredData.handleOnSearch.toLowerCase());
           });
         }
         console.log("after title >>>>>>>", blogs);
+        setGetDataAdd(blogs);
         setAllData(blogs);
       }
 
-      if (selected.length > -1) {
-        console.log("length", selected.length);
+    if (selected.length > -1) {
+      if (search) {
+        if (obj) {
+          console.log("Data before select all", allData);
+          console.log("Data before select get", getDataAdd);
 
-        if (search) {
-          if (obj) {
-            console.log("Data before select all", allData);
-
-            getDataAdd.forEach((data) => {
-              obj.forEach((item) => {
-                if (data.interstedValue.includes(item.value)) {
-                  if (!id.includes(data.idforcred)) {
-                    arr.push(data);
-                    id.push(data.idforcred);
-                  }
+          allData.forEach((data) => {
+            obj.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
                 }
-              });
+              }
             });
-            console.log("Data after select get", allData);
+          });
+          console.log("Data after select all", getDataAdd);
+          console.log("Data after select get", allData);
 
-            blogs = arr;
-          }
-        } else {
-          if (obj) {
-            console.log("Data before select all", allData);
-
-            allData.forEach((data) => {
-              obj.forEach((item) => {
-                if (data.interstedValue.includes(item.value)) {
-                  if (!id.includes(data.idforcred)) {
-                    arr.push(data);
-                    id.push(data.idforcred);
-                  }
+          blogs = arr;
+        }
+      } else {
+        if (obj) {
+          blogs.forEach((data) => {
+            obj.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
                 }
-              });
+              }
             });
-            console.log("Data after select get", allData);
+          });
 
-            blogs = arr;
-          }
+          blogs = arr;
         }
       }
-      setAllData(blogs);
     }
     setGetDataAdd(blogs);
   };
