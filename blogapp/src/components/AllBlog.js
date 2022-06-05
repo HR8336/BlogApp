@@ -15,12 +15,14 @@ const AllBlog = () => {
     { label: "Health", value: "Health" },
   ];
 
-  const [allData, setAllData] = useState([]);
-  const [selectFilterData, setSelectFilterData] = useState([]);
-  const [getDataAdd, setGetDataAdd] = useState([]);
+  const [allData, setAllData] = useState([]); // Duplicate
+  const [getDataAdd, setGetDataAdd] = useState([]); //all Data
   const [isRefresh, setIsRefresh] = useState(true);
-  const [selected, setSelected] = useState([]);
-  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState([]); // handleChange interested
+  const [search, setSearch] = useState(""); //handleChange title
+  const [alreadyInpFilter, setAlreadyInpFilter] = useState([]); // needed  topic
+  const [alreadySelFilter, setAlreadySelFilter] = useState([]); //needed interested
+
   const getInterest = JSON.parse(localStorage.getItem("loggedUser"));
 
   // Change Data as per Interest and Add
@@ -107,36 +109,28 @@ const AllBlog = () => {
       const arr = [];
       const id = [];
       if (filteredData.handleOnSearch) {
-        console.log(">>>>>>", filteredData.handleOnSearch);
-        console.log();
         let inputFilter = [];
-        if (selected.length > -1) {
-          console.log("length", selected.length);
-          console.log("before title  >>>>>>>", blogs);
-          inputFilter = getDataAdd.filter((data) => {
+        if (alreadySelFilter.length !== 0) {
+          blogs = alreadySelFilter.filter((data) => {
             return data.title
               .toLowerCase()
               .includes(filteredData.handleOnSearch.toLowerCase());
           });
+          inputFilter = blogs;
         } else {
-          blogs = allData.filter((data) => {
+          blogs = blogs.filter((data) => {
             return data.title
               .toLowerCase()
               .includes(filteredData.handleOnSearch.toLowerCase());
           });
+          inputFilter = blogs;
         }
-        console.log("after title >>>>>>>", blogs);
-        setAllData(blogs);
+        setAlreadyInpFilter(inputFilter);
       }
-
-      if (selected.length > -1) {
-        console.log("length", selected.length);
-
-        if (search) {
-          if (obj) {
-            console.log("Data before select all", allData);
-
-            getDataAdd.forEach((data) => {
+      if (filteredData.handleOnSearch === undefined || search.length !== 0) {
+        if (obj) {
+          if (obj.length !== 0) {
+            blogs.forEach((data) => {
               obj.forEach((item) => {
                 if (data.interstedValue.includes(item.value)) {
                   if (!id.includes(data.idforcred)) {
@@ -146,15 +140,60 @@ const AllBlog = () => {
                 }
               });
             });
-            console.log("Data after select get", allData);
-
             blogs = arr;
           }
         } else {
-          if (obj) {
-            console.log("Data before select all", allData);
-
-            allData.forEach((data) => {
+          if (selected.length !== 0) {
+            blogs.forEach((data) => {
+              selected.forEach((item) => {
+                if (data.interstedValue.includes(item.value)) {
+                  if (!id.includes(data.idforcred)) {
+                    arr.push(data);
+                    id.push(data.idforcred);
+                  }
+                }
+              });
+            });
+            blogs = arr;
+          }
+        }
+      } else {
+        if (selected.length !== 0) {
+          blogs.forEach((data) => {
+            selected.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
+                }
+              }
+            });
+          });
+          blogs = arr;
+        }
+      }
+      if (obj) {
+        if (search.length === 0) {
+          setAlreadySelFilter(allData);
+          setAlreadyInpFilter([]);
+        }
+        if (obj.length > 0) {
+          if (search.length !== 0) {
+            const itemsArr = [];
+            const itemsId = [];
+            alreadyInpFilter.forEach((data) => {
+              obj.forEach((item) => {
+                if (data.interstedValue.includes(item.value)) {
+                  if (!itemsId.includes(data.idforcred)) {
+                    itemsArr.push(data);
+                    itemsId.push(data.idforcred);
+                  }
+                }
+              });
+            });
+            blogs = itemsArr;
+          } else {
+            blogs.forEach((data) => {
               obj.forEach((item) => {
                 if (data.interstedValue.includes(item.value)) {
                   if (!id.includes(data.idforcred)) {
@@ -164,15 +203,20 @@ const AllBlog = () => {
                 }
               });
             });
-            console.log("Data after select get", allData);
-
             blogs = arr;
+          }
+          setAlreadySelFilter([]);
+        }
+        if (obj.length === 0) {
+          if (search !== 0) {
+            blogs = allData.filter((data) => {
+              return data.title.toLowerCase().includes(search.toLowerCase());
+            });
           }
         }
       }
-      setAllData(blogs);
+      setGetDataAdd(blogs);
     }
-    setGetDataAdd(blogs);
   };
 
   // Render Data

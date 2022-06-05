@@ -65,7 +65,8 @@ const SavedBlog = () => {
         arr.push(data);
       }
     });
-    console.log(arr);
+    // setSaveData(saveData.reverse());
+    // console.log(saveData);
     localStorage.setItem("detail", JSON.stringify(arr));
   };
 

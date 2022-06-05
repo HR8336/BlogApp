@@ -31,8 +31,11 @@ const Signup = () => {
   const submitData = (e) => {
     e.preventDefault();
     const mailofdata = dataOfMail.map((elm) => elm.email);
+    const mobileofData = dataOfMail.map((elm) => elm.mobile);
     if (mailofdata.includes(email)) {
       toast.warn("Already Email Exisits!!");
+    } else if (mobileofData.includes(mobile)) {
+      toast.warn("Already Mobile No. Exisitis!!");
     } else {
       if (name !== "") {
         if (email !== "") {

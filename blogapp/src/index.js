@@ -14,31 +14,30 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 
-<<<<<<< HEAD
-import React, { useState, useEffect } from "react";
-=======
 // import React, { useState, useEffect } from "react";
->>>>>>> 133eb3bdbcd0b28115b63b2048f2a6d449397204
+
+// import React, { useState, useEffect } from "react";
+
 // import Blog from "./Blog";
 // import { BsSave, BsSaveFill } from "react-icons/bs";
 // import { BlogWrap } from "./Blog";
 // import { Select } from "antd";
 // const AllBlog = () => {
-//   const [filterSaveData, setFilterSaveData] = useState([]);
-//   const [filterData, setfilterData] = useState([]);
+//   const [filterSaveData, setFilterSaveData] = useState([]);  // Duplicate
+//   const [filterData, setfilterData] = useState([]);  // All Blog
 //   const [userData, setUserData] = useState(
 //     JSON.parse(localStorage.getItem("data")) || []
 //   );
 //   const [saved, setSaved] = useState([]);
 //   const [login_id, setlogin_id] = useState();
 //   const [saveBlogIds, setsaveBlogIds] = useState([]);
-//   const [filterValue, setFilterValue] = useState("");
-//   const [topic, setTopic] = useState([]);
-//   const [inputFilterData, setInputFilterData] = useState([]);
-//   const [selectData, setSelectData] = useState([]);
+//   const [filterValue, setFilterValue] = useState(""); //handlechange title
+//   const [topic, setTopic] = useState([]); //handlechange interested
+//   const [inputFilterData, setInputFilterData] = useState([]); //needed
+//   const [selectData, setSelectData] = useState([]);//needed
 //   const { Option } = Select;
 //   useEffect(() => {
-//     console.log("AllBlog rendering.....");
+
 //     const userData = JSON.parse(localStorage.getItem("data"));
 //     setUserData(userData);
 //     const login_id = JSON.parse(localStorage.getItem("LogIn_id"));
@@ -49,7 +48,7 @@ import React, { useState, useEffect } from "react";
 //       const saveIds = JSON.parse(saved);
 //       setSaved(saveIds);
 //     }
-//     console.log("first effect");
+
 //   }, [saveBlogIds]);
 //   const filterBlogData = () => {
 //     const blogData = JSON.parse(localStorage.getItem("Blog"));
@@ -94,7 +93,7 @@ import React, { useState, useEffect } from "react";
 //     filterTitle(value);
 //   };
 //   const filterTitle = (value) => {
-//     console.log("value", value);
+
 //     let searchFilterData = [...filterSaveData];
 //     if (searchFilterData) {
 //       let arr = [];
