@@ -17,7 +17,7 @@ const Login = () => {
     "harsh.zadafiya@portpro.io",
     "harsh.zadafiya13@portpro.io",
   ];
-  const adminPassword = ["12345"];
+  const adminPassword = ["1234"];
 
   const isUser = getdatals.find(
     (el) =>
