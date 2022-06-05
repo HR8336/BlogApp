@@ -16,7 +16,10 @@ const AllBlog = () => {
   ];
 
   const [allData, setAllData] = useState([]);
+<<<<<<< HEAD
   const [selectFilterData, setSelectFilterData] = useState([]);
+=======
+>>>>>>> 133eb3bdbcd0b28115b63b2048f2a6d449397204
   const [getDataAdd, setGetDataAdd] = useState([]);
   const [isRefresh, setIsRefresh] = useState(true);
   const [selected, setSelected] = useState([]);
@@ -102,6 +105,7 @@ const AllBlog = () => {
 
   const filteredData = (obj) => {
     let blogs = [...allData];
+<<<<<<< HEAD
 
     if (blogs) {
       const arr = [];
@@ -114,18 +118,37 @@ const AllBlog = () => {
           console.log("length", selected.length);
           console.log("before title  >>>>>>>", blogs);
           inputFilter = getDataAdd.filter((data) => {
+=======
+    console.log("AllData Change ..?", blogs);
+    const arr = [];
+    const id = [];
+
+    if (blogs)
+      if (filteredData.handleOnSearch) {
+        console.log(">>>>>>", filteredData.handleOnSearch);
+        console.log();
+        if (selected.length > -1) {
+          console.log("length", selected.length);
+          console.log("before title  >>>>>>>", blogs);
+          blogs = getDataAdd.filter((data) => {
+>>>>>>> 133eb3bdbcd0b28115b63b2048f2a6d449397204
             return data.title
               .toLowerCase()
               .includes(filteredData.handleOnSearch.toLowerCase());
           });
         } else {
+<<<<<<< HEAD
           blogs = allData.filter((data) => {
+=======
+          blogs = blogs.filter((data) => {
+>>>>>>> 133eb3bdbcd0b28115b63b2048f2a6d449397204
             return data.title
               .toLowerCase()
               .includes(filteredData.handleOnSearch.toLowerCase());
           });
         }
         console.log("after title >>>>>>>", blogs);
+<<<<<<< HEAD
         setAllData(blogs);
       }
 
@@ -171,6 +194,49 @@ const AllBlog = () => {
         }
       }
       setAllData(blogs);
+=======
+        setGetDataAdd(blogs);
+        setAllData(blogs);
+      }
+
+    if (selected.length > -1) {
+      if (search) {
+        if (obj) {
+          console.log("Data before select all", allData);
+          console.log("Data before select get", getDataAdd);
+
+          allData.forEach((data) => {
+            obj.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
+                }
+              }
+            });
+          });
+          console.log("Data after select all", getDataAdd);
+          console.log("Data after select get", allData);
+
+          blogs = arr;
+        }
+      } else {
+        if (obj) {
+          blogs.forEach((data) => {
+            obj.forEach((item) => {
+              if (data.interstedValue.includes(item.value)) {
+                if (!id.includes(data.idforcred)) {
+                  arr.push(data);
+                  id.push(data.idforcred);
+                }
+              }
+            });
+          });
+
+          blogs = arr;
+        }
+      }
+>>>>>>> 133eb3bdbcd0b28115b63b2048f2a6d449397204
     }
     setGetDataAdd(blogs);
   };

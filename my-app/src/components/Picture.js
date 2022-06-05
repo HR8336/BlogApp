@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import Sdata from "./Sdata";
+import Button from "./Button";
 function Picture() {
   const [data, setdata] = useState(Sdata);
-  const [btn, setBtn] = useState(0);
-  const chane = () => setBtn(btn + 1);
   return (
     <>
       {data.map((ele) => {
@@ -37,10 +36,7 @@ function Picture() {
               <button type="button" className="loopbtn">
                 <img src="loop.png" style={{ width: "24px", height: "24px" }} />
               </button>
-              <button type="button" className="likeBtn" onClick={chane}>
-                <img src="like.png" style={{ width: "24px", height: "24px" }} />
-                {btn}
-              </button>
+              <Button />
               <button type="button" className="dotBtn">
                 <img
                   className="image4"
@@ -55,5 +51,4 @@ function Picture() {
     </>
   );
 }
-
 export default Picture;
