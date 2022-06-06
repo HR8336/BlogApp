@@ -79,30 +79,28 @@ const SavedBlog = () => {
               <div>
                 {saveData.map((elem, id) => {
                   return (
-                    <>
+                    <div key={id}>
                       <div>
-                        <div>
-                          <BlogData
-                            title={elem.title}
-                            interstedValue={elem.interstedValue}
-                            description={elem.description}
-                          />
-                        </div>
-                        <div className="mb-5">
-                          <BsFillSaveFill
-                            onClick={() => {
-                              handleClickofUnsave(elem.idforcred);
-                            }}
-                            cursor="pointer"
-                            style={{
-                              height: "25px",
-                              width: "25px",
-                              marginLeft: "450px",
-                            }}
-                          />
-                        </div>
+                        <BlogData
+                          title={elem.title}
+                          interstedValue={elem.interstedValue}
+                          description={elem.description}
+                        />
                       </div>
-                    </>
+                      <div className="mb-5">
+                        <BsFillSaveFill
+                          onClick={() => {
+                            handleClickofUnsave(elem.idforcred);
+                          }}
+                          cursor="pointer"
+                          style={{
+                            height: "25px",
+                            width: "25px",
+                            marginLeft: "450px",
+                          }}
+                        />
+                      </div>
+                    </div>
                   );
                 })}
               </div>

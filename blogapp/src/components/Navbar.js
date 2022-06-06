@@ -72,6 +72,17 @@ const Navbar = () => {
                       Home
                     </Link>
                   </li>
+                  <li className="nav-item ms-5">
+                    <Link
+                      className={`nav-link ${
+                        location.pathname === "/profile" ? "active" : ""
+                      }`}
+                      aria-current="page"
+                      to="/profile"
+                    >
+                      Profile
+                    </Link>
+                  </li>
 
                   <li className="nav-item ms-5">
                     <Logout />

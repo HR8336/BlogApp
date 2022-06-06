@@ -129,7 +129,7 @@ const AddBlog = () => {
                 style={{ width: "350px" }}
                 placeholder="Enter Title"
                 className="form-control"
-                id="exampleInputEmail1"
+                id="addexampleInputEmail1"
                 aria-describedby="emailHelp"
               />
             </div>
@@ -146,7 +146,7 @@ const AddBlog = () => {
                 style={{ height: "200px" }}
                 className="form-control"
                 placeholder="Enter description"
-                id="exampleInputDescription1"
+                id="addexampleInputDescription1"
               />
             </div>
 

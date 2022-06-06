@@ -39,38 +39,37 @@ const MyBlog = () => {
           <NavHomes />
           {getDataAdd.length !== 0 ? (
             <div>
-              {getDataAdd.map((elem) => {
+              {getDataAdd.map((elem, id) => {
                 return (
-                  <>
-                    <div
-                      key={elem.idforcred}
-                      className="card mb-4"
-                      style={{ width: "30rem", border: "solid black" }}
-                    >
-                      <div className="card-body">
-                        <h4 className="card-title mb-4">{elem.title}</h4>
-                        <h6 className="card-subtitle mb-2 text-muted">
-                          Topic : {elem.interstedValue + ""}
-                        </h6>
-                        <p className="card-text">{elem.description}</p>
-                        <FiEdit
-                          cursor="pointer"
-                          onClick={() => {
-                            handleEdit(elem.idforcred);
-                          }}
-                          style={{ height: "25px", width: "25px" }}
-                        />
-                        <MdDelete
-                          cursor="pointer"
-                          onClick={() => {
-                            handleDelete(elem.idforcred);
-                          }}
-                          style={{ height: "25px", width: "25px" }}
-                          className="ms-4"
-                        />
-                      </div>
+                  <div
+                    // key={elem.idforcred}
+                    key={id}
+                    className="card mb-4"
+                    style={{ width: "30rem", border: "solid black" }}
+                  >
+                    <div className="card-body">
+                      <h4 className="card-title mb-4">{elem.title}</h4>
+                      <h6 className="card-subtitle mb-2 text-muted">
+                        Topic : {elem.interstedValue + ""}
+                      </h6>
+                      <p className="card-text">{elem.description}</p>
+                      <FiEdit
+                        cursor="pointer"
+                        onClick={() => {
+                          handleEdit(elem.idforcred);
+                        }}
+                        style={{ height: "25px", width: "25px" }}
+                      />
+                      <MdDelete
+                        cursor="pointer"
+                        onClick={() => {
+                          handleDelete(elem.idforcred);
+                        }}
+                        style={{ height: "25px", width: "25px" }}
+                        className="ms-4"
+                      />
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>

@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import AdminPage from "./AdminPage";
 import PublicRoute from "./PublicRoute";
+import Profile from "./Profile";
 
 const ReactComponents = () => {
   // const isLogged = localStorage.getItem("isLoggedUser");
@@ -89,6 +90,14 @@ const ReactComponents = () => {
               element={
                 <PrivateRoute>
                   <AddBlog />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <Profile />
                 </PrivateRoute>
               }
             />

@@ -1,18 +1,6 @@
-// import React, { useState, useEffect } from "react";
 import React from "react";
-// import { FiEdit } from "react-icons/fi";
 
 const BlogData = ({ title, interstedValue, description }) => {
-  // const [getDataAdd, setGetDataAdd] = useState([]);
-
-  // useEffect(() => {
-  //   const dataFromAdd = localStorage.getItem("BlogData");
-  //   if (dataFromAdd !== null) setGetDataAdd(JSON.parse(dataFromAdd));
-  // }, []);
-  // const handleEdit = (e) => {
-  //   e.preventDefault();
-  // };
-
   return (
     <>
       <div>

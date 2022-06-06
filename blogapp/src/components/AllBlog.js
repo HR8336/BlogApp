@@ -251,47 +251,45 @@ const AllBlog = () => {
           <>
             <div>
               <div>
-                {getDataAdd.map((elem, id) => {
+                {getDataAdd.map((elem, i) => {
                   return (
-                    <>
+                    <div key={i}>
                       <div>
-                        <div>
-                          <BlogData
-                            title={elem.title}
-                            interstedValue={elem.interstedValue}
-                            description={elem.description}
-                          />
-                        </div>
-                        <div className="mb-5">
-                          {getInterest.blogId &&
-                          getInterest.blogId.indexOf(elem.idforcred) > -1 ? (
-                            <BsFillSaveFill
-                              onClick={() => {
-                                handleClickofSave(elem.idforcred);
-                              }}
-                              cursor="pointer"
-                              style={{
-                                height: "25px",
-                                width: "25px",
-                                marginLeft: "450px",
-                              }}
-                            />
-                          ) : (
-                            <BsSave2
-                              onClick={() => {
-                                handleClickofSave(elem.idforcred);
-                              }}
-                              cursor="pointer"
-                              style={{
-                                height: "25px",
-                                width: "25px",
-                                marginLeft: "450px",
-                              }}
-                            />
-                          )}
-                        </div>
+                        <BlogData
+                          title={elem.title}
+                          interstedValue={elem.interstedValue}
+                          description={elem.description}
+                        />
                       </div>
-                    </>
+                      <div className="mb-5">
+                        {getInterest.blogId &&
+                        getInterest.blogId.indexOf(elem.idforcred) > -1 ? (
+                          <BsFillSaveFill
+                            onClick={() => {
+                              handleClickofSave(elem.idforcred);
+                            }}
+                            cursor="pointer"
+                            style={{
+                              height: "25px",
+                              width: "25px",
+                              marginLeft: "450px",
+                            }}
+                          />
+                        ) : (
+                          <BsSave2
+                            onClick={() => {
+                              handleClickofSave(elem.idforcred);
+                            }}
+                            cursor="pointer"
+                            style={{
+                              height: "25px",
+                              width: "25px",
+                              marginLeft: "450px",
+                            }}
+                          />
+                        )}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
