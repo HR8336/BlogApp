@@ -11,10 +11,14 @@ const MyBlog = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const dataFromAdd = localStorage.getItem("BlogData");
-    if (dataFromAdd !== null) setGetDataAdd(JSON.parse(dataFromAdd));
+    const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
+    const getmail = JSON.parse(localStorage.getItem("email"));
+
+    const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
+
+    setGetDataAdd(filterdData);
   }, []);
-  const getmail = JSON.parse(localStorage.getItem("email"));
+
   const handleEdit = (idforcred) => {
     navigate(`/home/addblog/${idforcred}`);
   };
@@ -33,14 +37,13 @@ const MyBlog = () => {
       <div>
         <div>
           <NavHomes />
-          <div>
-            {getDataAdd
-              .filter((elem) => elem.id === getmail)
-              .map((elem, id) => {
+          {getDataAdd.length !== 0 ? (
+            <div>
+              {getDataAdd.map((elem) => {
                 return (
                   <>
                     <div
-                      key={id}
+                      key={elem.idforcred}
                       className="card mb-4"
                       style={{ width: "30rem", border: "solid black" }}
                     >
@@ -70,7 +73,21 @@ const MyBlog = () => {
                   </>
                 );
               })}
-          </div>
+            </div>
+          ) : (
+            <>
+              <div className="mt-5">
+                <p
+                  className="fs-2"
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  No Blogs
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

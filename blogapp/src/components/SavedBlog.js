@@ -26,12 +26,13 @@ const SavedBlog = () => {
         if (element.blogId && Array.isArray(element.blogId)) {
           getDatafromLs.forEach((ele) => {
             if (element.blogId.includes(ele.idforcred)) {
-              arr.unshift(ele);
-              console.log("first", arr);
+              arr.push(ele);
+              // arr.unshift(ele);
             }
           });
         }
       }
+      arr.reverse();
       setSaveData(arr);
     });
   }, [getDatafromLs, getDataofAllUser, getmail]);
@@ -43,7 +44,6 @@ const SavedBlog = () => {
         return idforcred !== data.idforcred;
       });
     });
-    console.log(saveData);
 
     getDataofAllUser.forEach((data) => {
       if (data.email === getmail) {
@@ -59,7 +59,6 @@ const SavedBlog = () => {
             arr.push(currentUser);
 
             localStorage.setItem("loggedUser", JSON.stringify(currentUser));
-            console.log(currentUser);
           }
         }
       } else {

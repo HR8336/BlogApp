@@ -66,7 +66,7 @@ const AllBlog = () => {
         if (currentUser.blogId && Array.isArray(currentUser.blogId)) {
           if (!data.blogId.includes(idforcred)) {
             toast.success("Bloged Saved");
-            currentUser.blogId.unshift(idforcred);
+            currentUser.blogId.push(idforcred);
           } else {
             toast.warn("Bloged Unsaved");
             const updateData = currentUser.blogId.filter((index) => {
