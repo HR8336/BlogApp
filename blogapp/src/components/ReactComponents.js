@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import AdminPage from "./AdminPage";
 
 const ReactComponents = () => {
+  // const isLogged = localStorage.getItem("isLoggedUser");
   return (
     <>
       <ToastContainer

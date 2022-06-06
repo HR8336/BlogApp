@@ -26,7 +26,8 @@ const SavedBlog = () => {
         if (element.blogId && Array.isArray(element.blogId)) {
           getDatafromLs.forEach((ele) => {
             if (element.blogId.includes(ele.idforcred)) {
-              arr.push(ele);
+              arr.unshift(ele);
+              console.log("first", arr);
             }
           });
         }
@@ -65,8 +66,7 @@ const SavedBlog = () => {
         arr.push(data);
       }
     });
-    // setSaveData(saveData.reverse());
-    // console.log(saveData);
+
     localStorage.setItem("detail", JSON.stringify(arr));
   };
 

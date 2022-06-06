@@ -20,8 +20,8 @@ const AllBlog = () => {
   const [isRefresh, setIsRefresh] = useState(true);
   const [selected, setSelected] = useState([]); // handleChange interested
   const [search, setSearch] = useState(""); //handleChange title
-  const [alreadyInpFilter, setAlreadyInpFilter] = useState([]); // needed  topic
-  const [alreadySelFilter, setAlreadySelFilter] = useState([]); //needed interested
+  const [alreadyInpFilter, setAlreadyInpFilter] = useState([]); // already  title
+  const [alreadySelFilter, setAlreadySelFilter] = useState([]); //already interested
 
   const getInterest = JSON.parse(localStorage.getItem("loggedUser"));
 
@@ -66,7 +66,7 @@ const AllBlog = () => {
         if (currentUser.blogId && Array.isArray(currentUser.blogId)) {
           if (!data.blogId.includes(idforcred)) {
             toast.success("Bloged Saved");
-            currentUser.blogId.push(idforcred);
+            currentUser.blogId.unshift(idforcred);
           } else {
             toast.warn("Bloged Unsaved");
             const updateData = currentUser.blogId.filter((index) => {
