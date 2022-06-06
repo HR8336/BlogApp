@@ -88,7 +88,6 @@ const AddBlog = () => {
           title,
           description,
           interstedValue,
-          // id: JSON.parse(localStorage.getItem("id")),  // problem in second time login
           id: JSON.parse(localStorage.getItem("email")),
           idforcred: Math.trunc(Math.random() * 1000) + 1,
         };

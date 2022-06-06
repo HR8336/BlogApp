@@ -158,7 +158,7 @@ const Signup = () => {
             type="radio"
             name="flexRadioDefault"
             id="flexRadioDefault1"
-            checked
+            defaultChecked
           />
           <label className="form-check-label" htmlFor="flexRadioDefault1">
             Male
