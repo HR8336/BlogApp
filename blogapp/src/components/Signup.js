@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 
@@ -92,10 +92,6 @@ const Signup = () => {
     setSelected(data);
   };
 
-  const loginPage = (e) => {
-    e.preventDefault();
-    navigate("/login");
-  };
   return (
     <>
       <form>
@@ -211,10 +207,7 @@ const Signup = () => {
         </button>
         <div className="mb-3 mt-2">
           <p className="form-label">
-            Already User ?
-            <button className="btn btn-primary ms-2" onClick={loginPage}>
-              Login
-            </button>
+            Already User? <Link to={"/login"}>Login</Link>
           </p>
         </div>
       </form>

@@ -25,7 +25,7 @@ const AllBlog = () => {
 
   const getInterest = JSON.parse(localStorage.getItem("loggedUser"));
 
-  // Change Data as per Interest and Add
+  // Filter Data as per Interest and Add
 
   useEffect(() => {
     const getInterest = JSON.parse(localStorage.getItem("loggedUser"));

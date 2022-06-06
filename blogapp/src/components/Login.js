@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -36,11 +36,6 @@ const Login = () => {
       toast.error("Wrong Email or Password!!");
     }
     return isUser;
-  };
-
-  const logoutPage = (e) => {
-    e.preventDefault();
-    navigate("/signup");
   };
 
   const loginPage = (e) => {
@@ -101,10 +96,7 @@ const Login = () => {
         </button>
         <div className="mb-3 mt-2">
           <p className="form-label">
-            You don't have account ?
-            <button className="btn btn-primary ms-2" onClick={logoutPage}>
-              SignUp
-            </button>
+            You don't have account? <Link to={"/signup"}>SignUp </Link>
           </p>
         </div>
       </div>
