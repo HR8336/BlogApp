@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import NavHomes from "./NavHomes";
 import BlogData from "./BlogData";
 import { BsFillSaveFill } from "react-icons/bs";
 import { toast } from "react-toastify";
@@ -70,8 +69,6 @@ const SavedBlog = () => {
   return (
     <>
       <div>
-        <NavHomes />
-
         {saveData.length !== 0 ? (
           <>
             <div>
@@ -79,7 +76,7 @@ const SavedBlog = () => {
                 {saveData.map((elem, id) => {
                   return (
                     <div key={id}>
-                      <div>
+                      <div className="mb-3 mt-5">
                         <BlogData
                           title={elem.title}
                           interstedValue={elem.interstedValue}

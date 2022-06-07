@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
-import NavHomes from "./NavHomes";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+export const GridBox = styled.div`
+  float: left;
+  width: 33.33%;
+`;
 
 const MyBlog = () => {
   const [getDataAdd, setGetDataAdd] = useState([]);
@@ -36,7 +41,6 @@ const MyBlog = () => {
     <>
       <div>
         <div>
-          <NavHomes />
           {getDataAdd.length !== 0 ? (
             <div>
               {getDataAdd.map((elem, id) => {
@@ -44,7 +48,7 @@ const MyBlog = () => {
                   <div
                     // key={elem.idforcred}
                     key={id}
-                    className="card mb-4"
+                    className="card mb-4 mt-5"
                     style={{ width: "30rem", border: "solid black" }}
                   >
                     <div className="card-body">

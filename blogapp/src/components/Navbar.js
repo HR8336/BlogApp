@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logout from "./Logout";
 import { CgProfile } from "react-icons/cg";
 import styled from "styled-components";
@@ -22,6 +22,11 @@ export const Header = styled.nav`
 const Navbar = () => {
   const location = useLocation();
   const isloggedUser = localStorage.getItem("isLoggedUser");
+  const navigate = useNavigate();
+  const handleAddBlog = (e) => {
+    e.preventDefault();
+    navigate("/home/addblog");
+  };
 
   return (
     <>
@@ -78,7 +83,42 @@ const Navbar = () => {
                 </>
               ) : (
                 <>
+                  <li className="nav-item ms-5">
+                    <Link
+                      className="nav-link active"
+                      style={{ marginRight: "90px" }}
+                      to="/home/allblog"
+                    >
+                      All Blog
+                    </Link>
+                  </li>
                   <li className="nav-item">
+                    <Link
+                      className="nav-link active"
+                      style={{ marginRight: "90px" }}
+                      to="/home/myblog"
+                    >
+                      My Blog
+                    </Link>
+                  </li>
+                  <li className="nav-item ">
+                    <Link
+                      className="nav-link active"
+                      style={{ marginRight: "90px" }}
+                      to="/home/saveblog"
+                    >
+                      Saved Blog
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <ButtonCss
+                      onClick={handleAddBlog}
+                      style={{ marginLeft: "850px" }}
+                    >
+                      Add Blog
+                    </ButtonCss>
+                  </li>
+                  <li className="nav-item ms-5">
                     <Link
                       className={`nav-link ${
                         location.pathname === "/profile" ? "active" : ""
@@ -88,9 +128,8 @@ const Navbar = () => {
                     >
                       <CgProfile
                         style={{
-                          height: "30px",
-                          width: "30px",
-                          marginLeft: "1550px",
+                          height: "40px",
+                          width: "40px",
                         }}
                       />
                     </Link>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
-import NavHomes from "./NavHomes";
 import { ButtonCss, BoxWrap, InputCss, Heading } from "./Login";
 
 const Profile = () => {
@@ -72,7 +71,6 @@ const Profile = () => {
 
   return (
     <>
-      <NavHomes />
       <BoxWrap
         style={{
           margin: "20px auto 0 auto",
@@ -89,7 +87,7 @@ const Profile = () => {
               <label htmlFor="inputName" className="form-label">
                 Name <span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <InputCss
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -103,7 +101,7 @@ const Profile = () => {
               <label htmlFor="inputEmail" className="form-label">
                 Email <span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <InputCss
                 type="email"
                 value={email}
                 readOnly
@@ -118,7 +116,7 @@ const Profile = () => {
               <label htmlFor="mobileNumber" className="form-label">
                 Mobile Number
               </label>
-              <input
+              <InputCss
                 type="text"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
@@ -132,7 +130,7 @@ const Profile = () => {
               <label htmlFor="aboutMe" className="form-label">
                 About Me
               </label>
-              <input
+              <InputCss
                 type="text"
                 value={about}
                 onChange={(e) => setAbout(e.target.value)}
@@ -184,7 +182,7 @@ const Profile = () => {
               <label htmlFor="Inputpassword" className="form-label">
                 Password <span style={{ color: "red" }}>*</span>
               </label>
-              <input
+              <InputCss
                 type="text"
                 value={passWord}
                 onChange={(e) => setPassWord(e.target.value)}

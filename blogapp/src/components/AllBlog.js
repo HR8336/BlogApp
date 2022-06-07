@@ -1,5 +1,4 @@
 import BlogData from "./BlogData";
-import NavHomes from "./NavHomes";
 import { BsSave2 } from "react-icons/bs";
 import { BsFillSaveFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -234,8 +233,7 @@ const AllBlog = () => {
   return (
     <>
       <div>
-        <NavHomes />
-        <div className="input-group  mt-4 mb-5">
+        <div className="input-group  mt-3 mb-5">
           <div className="form-outline">
             <input
               type="search"

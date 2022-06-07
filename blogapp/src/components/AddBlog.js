@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import NavHomes from "./NavHomes";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { valueMaker } from "./helper";
-import { ButtonCss } from "./Login";
+import { ButtonCss, BoxWrap, Heading, InputCss } from "./Login";
 
 const getLocaldata = () => {
   let list = localStorage.getItem("BlogData");
@@ -112,68 +111,80 @@ const AddBlog = () => {
   return (
     <>
       <div>
-        <NavHomes />
-        <div className="container my-3 ">
-          <h1>{params.id ? "Edit Blog" : "Add Blog"}</h1>
-          <form className="my-3">
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Title
-              </label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-                style={{ width: "350px" }}
-                placeholder="Enter Title"
-                className="form-control"
-                id="addexampleInputEmail1"
-                aria-describedby="emailHelp"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputDescription1" className="form-label">
-                Description
-              </label>
-              <input
-                type="text"
-                value={description}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-                style={{ height: "200px" }}
-                className="form-control"
-                placeholder="Enter description"
-                id="addexampleInputDescription1"
-              />
-            </div>
+        <BoxWrap
+          style={{
+            margin: "30px auto 0 auto",
+            maxWidth: "550px",
+            maxHeight: "1000px",
+          }}
+        >
+          <div>
+            {" "}
+            <div className="container my-3 ">
+              <Heading>{params.id ? "Edit Blog" : "Add Blog"}</Heading>
+              <form className="my-3">
+                <div className="mb-3">
+                  <label htmlFor="exampleInputEmail1" className="form-label">
+                    Title
+                  </label>
+                  <InputCss
+                    type="text"
+                    value={title}
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
+                    style={{ width: "350px" }}
+                    placeholder="Enter Title"
+                    className="form-control"
+                    id="addexampleInputEmail1"
+                    aria-describedby="emailHelp"
+                  />
+                </div>
+                <div className="mb-3">
+                  <label
+                    htmlFor="exampleInputDescription1"
+                    className="form-label"
+                  >
+                    Description
+                  </label>
+                  <InputCss
+                    type="text"
+                    value={description}
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
+                    style={{ height: "200px" }}
+                    className="form-control"
+                    placeholder="Enter description"
+                    id="addexampleInputDescription1"
+                  />
+                </div>
 
-            <div className="mb-3">
-              <h6 className="mb-3">
-                Select Topic<span style={{ color: "red" }}> *</span>
-              </h6>
-              <MultiSelect
-                options={options}
-                value={selected}
-                onChange={onSelected}
-                labelledBy="Select"
-              />
+                <div className="mb-3">
+                  <h6 className="mb-3">
+                    Select Topic<span style={{ color: "red" }}> *</span>
+                  </h6>
+                  <MultiSelect
+                    options={options}
+                    value={selected}
+                    onChange={onSelected}
+                    labelledBy="Select"
+                  />
+                </div>
+                <ButtonCss type="submit" onClick={onSubmit}>
+                  {params.id ? "Edit" : "Submit"}
+                </ButtonCss>
+              </form>
+              <div className="mb-20">
+                <p>
+                  <span style={{ color: "red" }}>*</span>Required Field
+                </p>
+              </div>
             </div>
-            <ButtonCss type="submit" onClick={onSubmit}>
-              {params.id ? "Edit" : "Submit"}
-            </ButtonCss>
-          </form>
-        </div>
+          </div>
+        </BoxWrap>
       </div>
-      <div>
-        <div className="mb-20">
-          <p>
-            <span style={{ color: "red" }}>*</span>Required Field
-          </p>
-        </div>
-      </div>
+      <div></div>
     </>
   );
 };
