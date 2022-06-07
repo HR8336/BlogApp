@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ButtonCss } from "./Login";
 
 const NavHomes = () => {
   const navigate = useNavigate();
@@ -41,9 +42,7 @@ const NavHomes = () => {
             </li>
 
             <li className="nav-item">
-              <button className="btn btn-primary" onClick={handleAddBlog}>
-                Add Blog
-              </button>
+              <ButtonCss onClick={handleAddBlog}>Add Blog</ButtonCss>
             </li>
           </ul>
         </div>

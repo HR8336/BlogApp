@@ -26,7 +26,6 @@ const SavedBlog = () => {
         if (element.blogId && Array.isArray(element.blogId)) {
           getDatafromLs.forEach((ele) => {
             if (element.blogId.includes(ele.idforcred)) {
-              // arr.push(ele);
               arr.unshift(ele);
             }
           });

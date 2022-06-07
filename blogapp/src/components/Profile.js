@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import NavHomes from "./NavHomes";
+import { ButtonCss } from "./Login";
 
 const Profile = () => {
   const options = [
@@ -184,13 +185,13 @@ const Profile = () => {
                 style={{ width: "350px" }}
               />
             </div>
-            <button
+            <ButtonCss
               type="submit"
               onClick={submitData}
               className="btn btn-primary"
             >
               Edit
-            </button>
+            </ButtonCss>
           </div>
         </div>
       </div>

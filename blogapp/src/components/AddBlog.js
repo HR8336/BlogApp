@@ -5,6 +5,7 @@ import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { valueMaker } from "./helper";
+import { ButtonCss } from "./Login";
 
 const getLocaldata = () => {
   let list = localStorage.getItem("BlogData");
@@ -160,13 +161,9 @@ const AddBlog = () => {
                 labelledBy="Select"
               />
             </div>
-            <button
-              type="submit"
-              onClick={onSubmit}
-              className="btn btn-primary mt-10px"
-            >
+            <ButtonCss type="submit" onClick={onSubmit}>
               {params.id ? "Edit" : "Submit"}
-            </button>
+            </ButtonCss>
           </form>
         </div>
       </div>

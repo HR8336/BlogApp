@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
+import { BoxWrap, InputCss, ButtonCss } from "./Login.js";
 
 const Signup = () => {
   const options = [
@@ -94,128 +95,137 @@ const Signup = () => {
 
   return (
     <>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="inputName" className="form-label">
-            Name <span style={{ color: "red" }}>*</span>
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter your name"
-            className="form-control"
-            id="inputName"
-            style={{ width: "350px" }}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputEmail" className="form-label">
-            Email <span style={{ color: "red" }}>*</span>
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter Your Email address"
-            className="form-control"
-            id="inputEmail"
-            style={{ width: "350px" }}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="mobileNumber" className="form-label">
-            Mobile Number
-          </label>
-          <input
-            type="text"
-            value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
-            placeholder="Enter your Mobile Number"
-            className="form-control"
-            id="mobileNumber"
-            style={{ width: "350px" }}
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="aboutMe" className="form-label">
-            About Me
-          </label>
-          <input
-            type="text"
-            value={about}
-            onChange={(e) => setAbout(e.target.value)}
-            placeholder="Enter about yourself"
-            className="form-control"
-            id="aboutMe"
-            style={{ width: "350px" }}
-          />
-        </div>
-        <p className="mb-2">Gender </p>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-            defaultChecked
-          />
-          <label className="form-check-label" htmlFor="flexRadioDefault1">
-            Male
-          </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault2"
-          />
-          <label className="form-check-label mb-3" htmlFor="flexRadioDefault2">
-            Female
-          </label>
-        </div>
-        <div className="mb-3">
-          <p>
-            Select Interest <span style={{ color: "red" }}>*</span>
-          </p>
-          <MultiSelect
-            options={options}
-            value={selected}
-            onChange={onSelect}
-            labelledBy="Select"
-          />
-        </div>
+      <BoxWrap>
+        <div>
+          <form>
+            <div className="mb-3">
+              <label htmlFor="inputName" className="form-label">
+                Name <span style={{ color: "red" }}>*</span>
+              </label>
+              <InputCss
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                className="form-control"
+                id="inputName"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inputEmail" className="form-label">
+                Email <span style={{ color: "red" }}>*</span>
+              </label>
+              <InputCss
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Your Email address"
+                className="form-control"
+                id="inputEmail"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="mobileNumber" className="form-label">
+                Mobile Number
+              </label>
+              <InputCss
+                type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                placeholder="Enter your Mobile Number"
+                className="form-control"
+                id="mobileNumber"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="aboutMe" className="form-label">
+                About Me
+              </label>
+              <InputCss
+                type="text"
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+                placeholder="Enter about yourself"
+                className="form-control"
+                id="aboutMe"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <p className="mb-2">Gender </p>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault1"
+                defaultChecked
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                Male
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="flexRadioDefault2"
+              />
+              <label
+                className="form-check-label mb-3"
+                htmlFor="flexRadioDefault2"
+              >
+                Female
+              </label>
+            </div>
+            <div className="mb-3">
+              <p>
+                Select Interest <span style={{ color: "red" }}>*</span>
+              </p>
 
-        <div className="mb-3 mt-2">
-          <label htmlFor="Inputpassword" className="form-label">
-            Password <span style={{ color: "red" }}>*</span>
-          </label>
-          <input
-            type="password"
-            value={passWord}
-            onChange={(e) => setPassWord(e.target.value)}
-            placeholder="Enter password"
-            className="form-control"
-            id="Inputpassword"
-            style={{ width: "350px" }}
-          />
-        </div>
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={onSelect}
+                labelledBy="Select"
+              />
+            </div>
 
-        <button type="submit" onClick={submitData} className="btn btn-primary">
-          Submit
-        </button>
-        <div className="mb-3 mt-2">
-          <p className="form-label">
-            Already User? <Link to={"/login"}>Login</Link>
-          </p>
+            <div className="mb-3 mt-2">
+              <label htmlFor="Inputpassword" className="form-label">
+                Password <span style={{ color: "red" }}>*</span>
+              </label>
+              <InputCss
+                type="password"
+                value={passWord}
+                onChange={(e) => setPassWord(e.target.value)}
+                placeholder="Enter password"
+                className="form-control"
+                id="Inputpassword"
+                style={{ width: "350px" }}
+              />
+            </div>
+
+            <ButtonCss type="submit" onClick={submitData}>
+              Submit
+            </ButtonCss>
+            <div className="mb-3 mt-2">
+              <p className="form-label">
+                Already User? <Link to={"/login"}>Login</Link>
+              </p>
+            </div>
+          </form>
+
+          <div>
+            <p>
+              <span style={{ color: "red" }}>*</span>Required Field
+            </p>
+          </div>
         </div>
-      </form>
-      <div>
-        <p>
-          <span style={{ color: "red" }}>*</span>Required Field
-        </p>
-      </div>
+      </BoxWrap>
     </>
   );
 };
