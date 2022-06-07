@@ -27,15 +27,17 @@ const Profile = () => {
     const getmail = JSON.parse(localStorage.getItem("email"));
 
     const fillData = dataFromAdd.find((ele) => ele.email === getmail);
-    setName(fillData.name);
-    setEmail(fillData.email);
-    setAbout(fillData.about);
-    setMobile(fillData.mobile);
-    setPassWord(fillData.passWord);
-    const data = options.filter((el) =>
-      fillData.interstedValue.find((i) => i === el.value)
-    );
-    setSelected(data);
+    if (fillData) {
+      setName(fillData.name);
+      setEmail(fillData.email);
+      setAbout(fillData.about);
+      setMobile(fillData.mobile);
+      setPassWord(fillData.passWord);
+      const data = options.filter((el) =>
+        fillData.interstedValue.find((i) => i === el.value)
+      );
+      setSelected(data);
+    }
   }, []);
 
   const onSelected = (data) => {
@@ -73,124 +75,122 @@ const Profile = () => {
         <div>
           <NavHomes />
           <div>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="inputName" className="form-label">
-                  Name <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Enter your name"
-                  className="form-control"
-                  id="updateinputName"
-                  style={{ width: "350px" }}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="inputEmail" className="form-label">
-                  Email <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  readOnly
-                  //   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter Your Email address"
-                  className="form-control"
-                  id="updateinputEmail"
-                  style={{ width: "350px" }}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="mobileNumber" className="form-label">
-                  Mobile Number
-                </label>
-                <input
-                  type="text"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)}
-                  placeholder="Enter your Mobile Number"
-                  className="form-control"
-                  id="updatemobileNumber"
-                  style={{ width: "350px" }}
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="aboutMe" className="form-label">
-                  About Me
-                </label>
-                <input
-                  type="text"
-                  value={about}
-                  onChange={(e) => setAbout(e.target.value)}
-                  placeholder="Enter about yourself"
-                  className="form-control"
-                  id="updateaboutMe"
-                  style={{ width: "350px" }}
-                />
-              </div>
-              <p className="mb-2">Gender </p>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="updateflexRadioDefault1"
-                  defaultChecked
-                />
-                <label className="form-check-label" htmlFor="flexRadioDefault1">
-                  Male
-                </label>
-              </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="updateflexRadioDefault2"
-                />
-                <label
-                  className="form-check-label mb-3"
-                  htmlFor="flexRadioDefault2"
-                >
-                  Female
-                </label>
-              </div>
-              <div className="mb-3">
-                <h6 className="mb-3">
-                  Select Topic<span style={{ color: "red" }}> *</span>
-                </h6>
-                <MultiSelect
-                  options={options}
-                  value={selected}
-                  onChange={onSelected}
-                />
-              </div>
-
-              <div className="mb-3 mt-2">
-                <label htmlFor="Inputpassword" className="form-label">
-                  Password <span style={{ color: "red" }}>*</span>
-                </label>
-                <input
-                  type="text"
-                  value={passWord}
-                  onChange={(e) => setPassWord(e.target.value)}
-                  placeholder="Enter password"
-                  className="form-control"
-                  id="updateInputpassword"
-                  style={{ width: "350px" }}
-                />
-              </div>
-              <button
-                type="submit"
-                onClick={submitData}
-                className="btn btn-primary"
+            <div className="mb-3">
+              <label htmlFor="inputName" className="form-label">
+                Name <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
+                className="form-control"
+                id="updateinputName"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inputEmail" className="form-label">
+                Email <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="email"
+                value={email}
+                readOnly
+                //   onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter Your Email address"
+                className="form-control"
+                id="updateinputEmail"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="mobileNumber" className="form-label">
+                Mobile Number
+              </label>
+              <input
+                type="text"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                placeholder="Enter your Mobile Number"
+                className="form-control"
+                id="updatemobileNumber"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="aboutMe" className="form-label">
+                About Me
+              </label>
+              <input
+                type="text"
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+                placeholder="Enter about yourself"
+                className="form-control"
+                id="updateaboutMe"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <p className="mb-2">Gender </p>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="updateflexRadioDefault1"
+                defaultChecked
+              />
+              <label className="form-check-label" htmlFor="flexRadioDefault1">
+                Male
+              </label>
+            </div>
+            <div className="form-check">
+              <input
+                className="form-check-input"
+                type="radio"
+                name="flexRadioDefault"
+                id="updateflexRadioDefault2"
+              />
+              <label
+                className="form-check-label mb-3"
+                htmlFor="flexRadioDefault2"
               >
-                Edit
-              </button>
-            </form>
+                Female
+              </label>
+            </div>
+            <div className="mb-3">
+              <h6 className="mb-3">
+                Select Topic<span style={{ color: "red" }}> *</span>
+              </h6>
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={onSelected}
+              />
+            </div>
+
+            <div className="mb-3 mt-2">
+              <label htmlFor="Inputpassword" className="form-label">
+                Password <span style={{ color: "red" }}>*</span>
+              </label>
+              <input
+                type="text"
+                value={passWord}
+                onChange={(e) => setPassWord(e.target.value)}
+                placeholder="Enter password"
+                className="form-control"
+                id="updateInputpassword"
+                style={{ width: "350px" }}
+              />
+            </div>
+            <button
+              type="submit"
+              onClick={submitData}
+              className="btn btn-primary"
+            >
+              Edit
+            </button>
           </div>
         </div>
       </div>
