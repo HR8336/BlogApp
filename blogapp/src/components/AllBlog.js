@@ -2,9 +2,11 @@ import BlogData from "./BlogData";
 import NavHomes from "./NavHomes";
 import { BsSave2 } from "react-icons/bs";
 import { BsFillSaveFill } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { MultiSelect } from "react-multi-select-component";
+import { useNavigate } from "react-router-dom";
 
 const AllBlog = () => {
   const options = [
@@ -23,7 +25,10 @@ const AllBlog = () => {
   const [alreadyInpFilter, setAlreadyInpFilter] = useState([]); // already  title
   const [alreadySelFilter, setAlreadySelFilter] = useState([]); //already interested
 
+  const navigate = useNavigate();
+
   const getInterest = JSON.parse(localStorage.getItem("loggedUser"));
+  const getmail = JSON.parse(localStorage.getItem("email"));
 
   // Filter Data as per Interest and Add
 
@@ -219,6 +224,12 @@ const AllBlog = () => {
     }
   };
 
+  //editData
+
+  const handleEdit = (idforcred) => {
+    navigate(`/home/addblog/${idforcred}`);
+  };
+
   // Render Data
   return (
     <>
@@ -272,7 +283,7 @@ const AllBlog = () => {
                             style={{
                               height: "25px",
                               width: "25px",
-                              marginLeft: "450px",
+                              marginLeft: "400px",
                             }}
                           />
                         ) : (
@@ -284,7 +295,20 @@ const AllBlog = () => {
                             style={{
                               height: "25px",
                               width: "25px",
-                              marginLeft: "450px",
+                              marginLeft: "400px",
+                            }}
+                          />
+                        )}
+                        {elem.id === getmail && (
+                          <FiEdit
+                            cursor="pointer"
+                            onClick={() => {
+                              handleEdit(elem.idforcred);
+                            }}
+                            style={{
+                              height: "25px",
+                              width: "25px",
+                              marginLeft: "25px",
                             }}
                           />
                         )}
