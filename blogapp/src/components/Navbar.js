@@ -7,7 +7,7 @@ import { ButtonCss } from "./Login";
 
 export const Header = styled.nav`
 
-  background: linear-gradient(110deg, #ffbd00 60%, #ffed4b 60%);
+  background: linear-gradient(110deg, #F8C8DC 60%, #f4f5dc 60%);
   text-align: center;
   width: 100%;
   height: auto;
@@ -65,7 +65,7 @@ const Navbar = () => {
                       Signup
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item ms-5">
                     <Link
                       className={`nav-link ${
                         location.pathname === "/about" ? "active" : ""

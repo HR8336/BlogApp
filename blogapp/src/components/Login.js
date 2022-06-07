@@ -9,10 +9,10 @@ export const BoxWrap = styled.div`
   max-width: 400px;
   min-height: 400px;
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.6);
+  background: #fffff7;
   box-shadow: 4px 2px 16px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
-  margin: 20px auto 0 auto;
+  margin: 100px auto 0 auto;
   padding: 25px;
   color: #414141;
 `;
@@ -25,15 +25,15 @@ export const InputCss = styled.input`
   margin: 14px auto;
   border-radius: 20px;
   color: #004b66;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   &:hover {
     outline: 0;
-    border-color: #394d00;
+    border-color: #f8c8dc;
   }
 `;
 
 export const Heading = styled.h2`
-  color: #004b66;
+  color: #000066;
   font-family: "Open Sans", sans-serif;
   font-size: 34px;
   font-weight: 300;
@@ -55,7 +55,7 @@ export const ButtonCss = styled.button`
   &:hover {
     color: #000000 !important;
     border-radius: 50px;
-    border-color: #000000 !important;
+    border-color: #f8c8dc !important;
     transition: all 0.6s ease 0s;
   }
 `;

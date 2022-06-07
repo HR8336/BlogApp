@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import NavHomes from "./NavHomes";
-import { ButtonCss } from "./Login";
+import { ButtonCss, BoxWrap, InputCss, Heading } from "./Login";
 
 const Profile = () => {
   const options = [
@@ -72,9 +72,18 @@ const Profile = () => {
 
   return (
     <>
-      <div>
+      <NavHomes />
+      <BoxWrap
+        style={{
+          margin: "20px auto 0 auto",
+          maxWidth: "550px",
+          maxHeight: "1000px",
+        }}
+      >
         <div>
-          <NavHomes />
+          <div>
+            <Heading>Edit Your Profile</Heading>
+          </div>
           <div>
             <div className="mb-3">
               <label htmlFor="inputName" className="form-label">
@@ -185,16 +194,17 @@ const Profile = () => {
                 style={{ width: "350px" }}
               />
             </div>
-            <ButtonCss
-              type="submit"
-              onClick={submitData}
-              className="btn btn-primary"
-            >
+            <ButtonCss type="submit" className="mb-3" onClick={submitData}>
               Edit
             </ButtonCss>
           </div>
+          <div>
+            <p>
+              <span style={{ color: "red" }}>*</span>Required Field
+            </p>
+          </div>
         </div>
-      </div>
+      </BoxWrap>
     </>
   );
 };

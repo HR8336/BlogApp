@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
-import { BoxWrap, InputCss, ButtonCss } from "./Login.js";
+import { BoxWrap, InputCss, ButtonCss, Heading } from "./Login.js";
 
 const Signup = () => {
   const options = [
@@ -95,8 +95,17 @@ const Signup = () => {
 
   return (
     <>
-      <BoxWrap>
+      <BoxWrap
+        style={{
+          margin: "20px auto 0 auto",
+          maxWidth: "550px",
+          maxHeight: "1000px",
+        }}
+      >
         <div>
+          <div>
+            <Heading>SignUp</Heading>
+          </div>
           <form>
             <div className="mb-3">
               <label htmlFor="inputName" className="form-label">
