@@ -64,17 +64,6 @@ const Navbar = () => {
                   <li className="nav-item ms-5">
                     <Link
                       className={`nav-link ${
-                        location.pathname === "/home" ? "active" : ""
-                      }`}
-                      aria-current="page"
-                      to="/home"
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  <li className="nav-item ms-5">
-                    <Link
-                      className={`nav-link ${
                         location.pathname === "/profile" ? "active" : ""
                       }`}
                       aria-current="page"
