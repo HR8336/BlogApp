@@ -7,7 +7,13 @@ import styled from "styled-components";
 
 export const GridBox = styled.div`
   float: left;
-  width: 33.33%;
+  width: 49%;
+  margin-right: 20px;
+  background: #fffff7;
+  box-shadow: 4px 2px 16px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 25px;
+  color: #414141;
 `;
 
 const MyBlog = () => {
@@ -45,7 +51,7 @@ const MyBlog = () => {
             <div>
               {getDataAdd.map((elem, id) => {
                 return (
-                  <div
+                  <GridBox
                     // key={elem.idforcred}
                     key={id}
                     className="card mb-4 mt-5"
@@ -73,7 +79,7 @@ const MyBlog = () => {
                         className="ms-4"
                       />
                     </div>
-                  </div>
+                  </GridBox>
                 );
               })}
             </div>
