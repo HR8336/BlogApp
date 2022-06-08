@@ -9,6 +9,7 @@ export const GridBox = styled.div`
   float: left;
   width: 49%;
   margin-right: 20px;
+  min-height: 400px;
   background: #fffff7;
   box-shadow: 4px 2px 16px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
@@ -52,10 +53,9 @@ const MyBlog = () => {
               {getDataAdd.map((elem, id) => {
                 return (
                   <GridBox
-                    // key={elem.idforcred}
                     key={id}
                     className="card mb-4 mt-5"
-                    style={{ width: "30rem", border: "solid black" }}
+                    style={{ width: "25rem", border: "solid black" }}
                   >
                     <div className="card-body">
                       <h4 className="card-title mb-4">{elem.title}</h4>

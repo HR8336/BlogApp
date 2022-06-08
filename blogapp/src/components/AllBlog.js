@@ -266,7 +266,7 @@ const AllBlog = () => {
                       // key={elem.idforcred}
                       key={id}
                       className="card mb-4 mt-5"
-                      style={{ width: "30rem", border: "solid black" }}
+                      style={{ width: "25rem", border: "solid black" }}
                     >
                       <div className="card-body">
                         <h4 className="card-title mb-4">{elem.title}</h4>
