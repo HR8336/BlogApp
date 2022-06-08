@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import BlogData from "./BlogData";
 import { BsFillSaveFill } from "react-icons/bs";
 import { toast } from "react-toastify";
+import { GridBox } from "./MyBlog";
 
 const SavedBlog = () => {
   const [getDatafromLs, setGetDatafromLs] = useState([]);
@@ -72,34 +72,34 @@ const SavedBlog = () => {
         {saveData.length !== 0 ? (
           <>
             <div>
-              <div>
-                {saveData.map((elem, id) => {
-                  return (
-                    <div key={id}>
-                      <div className="mb-3 mt-5">
-                        <BlogData
-                          title={elem.title}
-                          interstedValue={elem.interstedValue}
-                          description={elem.description}
-                        />
-                      </div>
-                      <div className="mb-5">
-                        <BsFillSaveFill
-                          onClick={() => {
-                            handleClickofUnsave(elem.idforcred);
-                          }}
-                          cursor="pointer"
-                          style={{
-                            height: "25px",
-                            width: "25px",
-                            marginLeft: "450px",
-                          }}
-                        />
-                      </div>
+              {saveData.map((elem, id) => {
+                return (
+                  <GridBox
+                    // key={elem.idforcred}
+                    key={id}
+                    className="card mb-4 mt-5"
+                    style={{ width: "30rem", border: "solid black" }}
+                  >
+                    <div className="card-body">
+                      <h4 className="card-title mb-4">{elem.title}</h4>
+                      <h6 className="card-subtitle mb-2 text-muted">
+                        Topic : {elem.interstedValue + ""}
+                      </h6>
+                      <p className="card-text">{elem.description}</p>
+                      <BsFillSaveFill
+                        onClick={() => {
+                          handleClickofUnsave(elem.idforcred);
+                        }}
+                        cursor="pointer"
+                        style={{
+                          height: "25px",
+                          width: "25px",
+                        }}
+                      />
                     </div>
-                  );
-                })}
-              </div>
+                  </GridBox>
+                );
+              })}
             </div>
           </>
         ) : (

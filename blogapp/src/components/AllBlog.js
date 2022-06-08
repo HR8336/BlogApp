@@ -1,4 +1,3 @@
-import BlogData from "./BlogData";
 import { BsSave2 } from "react-icons/bs";
 import { BsFillSaveFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -261,43 +260,21 @@ const AllBlog = () => {
           <>
             <div>
               <div>
-                {getDataAdd.map((elem, i) => {
+                {getDataAdd.map((elem, id) => {
                   return (
-                    <div key={i}>
-                      <div>
-                        <BlogData
-                          title={elem.title}
-                          interstedValue={elem.interstedValue}
-                          description={elem.description}
-                        />
-                      </div>
-                      <div className="mb-5">
-                        {getInterest.blogId &&
-                        getInterest.blogId.indexOf(elem.idforcred) > -1 ? (
-                          <BsFillSaveFill
-                            onClick={() => {
-                              handleClickofSave(elem.idforcred);
-                            }}
-                            cursor="pointer"
-                            style={{
-                              height: "25px",
-                              width: "25px",
-                              marginLeft: "400px",
-                            }}
-                          />
-                        ) : (
-                          <BsSave2
-                            onClick={() => {
-                              handleClickofSave(elem.idforcred);
-                            }}
-                            cursor="pointer"
-                            style={{
-                              height: "25px",
-                              width: "25px",
-                              marginLeft: "400px",
-                            }}
-                          />
-                        )}
+                    <GridBox
+                      // key={elem.idforcred}
+                      key={id}
+                      className="card mb-4 mt-5"
+                      style={{ width: "30rem", border: "solid black" }}
+                    >
+                      <div className="card-body">
+                        <h4 className="card-title mb-4">{elem.title}</h4>
+                        <h6 className="card-subtitle mb-2 text-muted">
+                          Topic : {elem.interstedValue + ""}
+                        </h6>
+                        <p className="card-text">{elem.description}</p>
+
                         {elem.id === getmail && (
                           <FiEdit
                             cursor="pointer"
@@ -307,12 +284,38 @@ const AllBlog = () => {
                             style={{
                               height: "25px",
                               width: "25px",
-                              marginLeft: "25px",
+                            }}
+                          />
+                        )}
+
+                        {getInterest.blogId &&
+                        getInterest.blogId.indexOf(elem.idforcred) > -1 ? (
+                          <BsFillSaveFill
+                            className="ms-4"
+                            onClick={() => {
+                              handleClickofSave(elem.idforcred);
+                            }}
+                            cursor="pointer"
+                            style={{
+                              height: "25px",
+                              width: "25px",
+                            }}
+                          />
+                        ) : (
+                          <BsSave2
+                            className="ms-4"
+                            onClick={() => {
+                              handleClickofSave(elem.idforcred);
+                            }}
+                            cursor="pointer"
+                            style={{
+                              height: "25px",
+                              width: "25px",
                             }}
                           />
                         )}
                       </div>
-                    </div>
+                    </GridBox>
                   );
                 })}
               </div>
