@@ -4,6 +4,9 @@ import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { collection, getDocs } from "firebase/firestore";
+import { async } from "@firebase/util";
+import { db } from "./firebase-config";
 
 export const GridBox = styled.div`
   float: left;
@@ -22,20 +25,44 @@ const MyBlog = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
-    const getmail = JSON.parse(localStorage.getItem("email"));
+  //localstorage ..........
 
-    const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
+  // useEffect(() => {
+  //   const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
+  //   const getmail = JSON.parse(localStorage.getItem("email"));
 
-    setGetDataAdd(filterdData);
-  }, []);
+  //   const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
+
+  //   setGetDataAdd(filterdData);
+  // }, []);
+
+  //firebase.........
 
   const handleEdit = (idforcred) => {
     navigate(`/home/addblog/${idforcred}`);
   };
+  const blogCollection = collection(db, "allBlog");
+  useEffect(() => {
+    const getmail = JSON.parse(localStorage.getItem("email"));
+    const getDataFromFb = async () => {
+      const dataOfMyBlog = await getDocs(blogCollection);
+
+      const data = dataOfMyBlog.docs.map((item) => ({
+        ...item.data(),
+        idforcred: item.id,
+      }));
+      console.log(data);
+
+      const filterdData = data.filter((ele) => ele.id === getmail);
+
+      setGetDataAdd(filterdData);
+    };
+
+    getDataFromFb();
+  }, []);
 
   const handleDelete = (index) => {
+    const blogCollection = collection(db, "allBlog");
     const updatedData = getDataAdd.filter((elem) => {
       return index !== elem.idforcred;
     });
@@ -51,6 +78,9 @@ const MyBlog = () => {
           {getDataAdd.length !== 0 ? (
             <div>
               {getDataAdd.map((elem, id) => {
+                {
+                  console.log(elem);
+                }
                 return (
                   <GridBox
                     key={id}
@@ -60,7 +90,7 @@ const MyBlog = () => {
                     <div className="card-body">
                       <h4 className="card-title mb-4">{elem.title}</h4>
                       <h6 className="card-subtitle mb-2 text-muted">
-                        Topic : {elem.interstedValue + ""}
+                        Topic : {elem.interestedValue + ""}
                       </h6>
                       <p className="card-text">{elem.description}</p>
                       <FiEdit

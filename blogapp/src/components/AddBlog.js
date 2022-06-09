@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { valueMaker } from "./helper";
 import { ButtonCss, BoxWrap, Heading, InputCss } from "./Login";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "./firebase-config";
 
 const getLocaldata = () => {
   let list = localStorage.getItem("BlogData");
@@ -55,54 +57,75 @@ const AddBlog = () => {
     }
   }, [params.id, detailofAdd]);
 
-  const onSubmit = (e) => {
+  const blogCollection = collection(db, "allBlog");
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-
-    if (params.id) {
-      const updateData = detailofAdd.map((ele) => {
-        if (ele.idforcred.toString() === params.id)
-          return {
-            ...ele,
-            title: title,
-            description: description,
-            interstedValue: selected.map((el) => el.value),
-          };
-        return ele;
+    if (selected.some((obj) => obj)) {
+      await addDoc(blogCollection, {
+        title,
+        description,
+        interestedValue: selected.map((el) => el.value),
+        id: JSON.parse(localStorage.getItem("email")),
+        idforcred: Math.trunc(Math.random() * 1000) + 1,
       });
-
-      setDetailOfAdd(updateData);
       setTitle("");
       setDescription("");
       setSelected([]);
-
-      toast.success("Your Blog Edited!");
-
-      localStorage.setItem("BlogData", JSON.stringify(updateData));
-      navigate("/home/myblog");
+      toast.success("Your Blog Added");
     } else {
-      if (selected.some((obj) => obj)) {
-        let interstedValue = [];
-        selected.forEach((obj) => interstedValue.push(obj.value));
-
-        let dataOfAdd = {
-          title,
-          description,
-          interstedValue,
-          id: JSON.parse(localStorage.getItem("email")),
-          idforcred: Math.trunc(Math.random() * 1000) + 1,
-        };
-        const totalDataofAdd = [...detailofAdd, dataOfAdd];
-        setDetailOfAdd(totalDataofAdd);
-        localStorage.setItem("BlogData", JSON.stringify(totalDataofAdd));
-        setTitle("");
-        setDescription("");
-        setSelected([]);
-        toast.success("Your Blog Added");
-      } else {
-        toast.warn("Please Select Topic Related Your Blog!!");
-      }
+      toast.warn("Please Select Topic Related Your Blog!!");
     }
   };
+
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   if (params.id) {
+  //     const updateData = detailofAdd.map((ele) => {
+  //       if (ele.idforcred.toString() === params.id)
+  //         return {
+  //           ...ele,
+  //           title: title,
+  //           description: description,
+  //           interstedValue: selected.map((el) => el.value),
+  //         };
+  //       return ele;
+  //     });
+
+  //     setDetailOfAdd(updateData);
+  //     setTitle("");
+  //     setDescription("");
+  //     setSelected([]);
+
+  //     toast.success("Your Blog Edited!");
+
+  //     localStorage.setItem("BlogData", JSON.stringify(updateData));
+  //     navigate("/home/myblog");
+  //   } else {
+  //     if (selected.some((obj) => obj)) {
+  //       let interstedValue = [];
+  //       selected.forEach((obj) => interstedValue.push(obj.value));
+
+  //       let dataOfAdd = {
+  //         title,
+  //         description,
+  //         interstedValue,
+  //         id: JSON.parse(localStorage.getItem("email")),
+  //         idforcred: Math.trunc(Math.random() * 1000) + 1,
+  //       };
+  //       const totalDataofAdd = [...detailofAdd, dataOfAdd];
+  //       setDetailOfAdd(totalDataofAdd);
+  //       localStorage.setItem("BlogData", JSON.stringify(totalDataofAdd));
+  //       setTitle("");
+  //       setDescription("");
+  //       setSelected([]);
+  //       toast.success("Your Blog Added");
+  //     } else {
+  //       toast.warn("Please Select Topic Related Your Blog!!");
+  //     }
+  //   }
+  // };
 
   const onSelected = (data) => {
     setSelected(data);
