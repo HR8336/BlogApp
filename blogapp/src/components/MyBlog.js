@@ -4,9 +4,8 @@ import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase-config";
-import { useLoadingContext } from "react-router-loading";
 
 export const GridBox = styled.div`
   float: left;
@@ -21,7 +20,6 @@ export const GridBox = styled.div`
 `;
 
 const MyBlog = () => {
-  const loadingContext = useLoadingContext();
   const [getDataAdd, setGetDataAdd] = useState([]);
 
   const navigate = useNavigate();
@@ -39,12 +37,9 @@ const MyBlog = () => {
 
   //firebase.........
 
-  const handleEdit = (idforcred) => {
-    navigate(`/home/addblog/${idforcred}`);
-  };
-  const blogCollection = collection(db, "allBlog");
   useEffect(() => {
     const getmail = JSON.parse(localStorage.getItem("email"));
+    const blogCollection = collection(db, "allBlog");
     const getDataFromFb = async () => {
       const dataOfMyBlog = await getDocs(blogCollection);
 
@@ -52,7 +47,6 @@ const MyBlog = () => {
         ...item.data(),
         idforcred: item.id,
       }));
-      console.log(data);
 
       const filterdData = data.filter((ele) => ele.id === getmail);
 
@@ -60,18 +54,29 @@ const MyBlog = () => {
     };
 
     getDataFromFb();
-  }, [blogCollection]);
+  }, []);
 
-  const handleDelete = (index) => {
-    // const blogCollection = collection(db, "allBlog");
-    const updatedData = getDataAdd.filter((elem) => {
-      return index !== elem.idforcred;
-    });
-    setGetDataAdd(updatedData);
-    localStorage.setItem("BlogData", JSON.stringify(updatedData));
+  const handleDelete = (hartsh) => {
+    //firebase.........
+
+    const blogCollection = doc(db, "allBlog", hartsh);
+    deleteDoc(blogCollection);
+
     toast.success("Blog Deleted");
+
+    // using localstorage >>>>>>>>>>>>>.
+
+    // const updatedData = getDataAdd.filter((elem) => {
+    //   return index !== elem.idforcred;
+    // });
+    // setGetDataAdd(updatedData);
+    // localStorage.setItem("BlogData", JSON.stringify(updatedData));
+    // toast.success("Blog Deleted");
   };
-  loadingContext.done();
+  const handleEdit = (idforcred) => {
+    navigate(`/home/addblog/${idforcred}`);
+  };
+
   return (
     <>
       <div>

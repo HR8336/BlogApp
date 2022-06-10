@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { BoxWrap, InputCss, ButtonCss, Heading } from "./Login.js";
-import { useLoadingContext } from "react-router-loading";
 
 const Signup = () => {
   const options = [
@@ -13,7 +12,7 @@ const Signup = () => {
     { label: "Fashion", value: "Fashion" },
     { label: "Health", value: "Health" },
   ];
-  const loadingContext = useLoadingContext();
+
   const [detail, setDetail] = useState(localStorage.getItem("detail") || []);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -93,7 +92,7 @@ const Signup = () => {
   const onSelect = (data) => {
     setSelected(data);
   };
-  loadingContext.done();
+
   return (
     <>
       <BoxWrap

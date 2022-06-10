@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
-import { useLoadingContext } from "react-router-loading";
+
 export const BoxWrap = styled.div`
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@ export const ButtonCss = styled.button`
 
 const Login = () => {
   const navigate = useNavigate();
-  const loadingContext = useLoadingContext();
+
   const [emailofLogin, setEmailofLogin] = useState("");
   const [passwordofLogin, setpasswordofLogin] = useState("");
   const [getdatals, setGetdatals] = useState([]);
@@ -119,8 +119,6 @@ const Login = () => {
   const onEmail = (e) => {
     setEmailofLogin(e.target.value);
   };
-  loadingContext.done();
-
   return (
     <>
       <BoxWrap>

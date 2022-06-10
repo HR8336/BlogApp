@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { GridBox } from "./MyBlog";
-import { useLoadingContext } from "react-router-loading";
 
 const MyBlog = () => {
   const [getDataAdd, setGetDataAdd] = useState([]);
-  const loadingContext = useLoadingContext();
 
   useEffect(() => {
     const dataFromAdd = localStorage.getItem("BlogData");
@@ -21,7 +19,6 @@ const MyBlog = () => {
     localStorage.setItem("BlogData", JSON.stringify(updatedData));
     toast.success("Blog Deleted");
   };
-  loadingContext.done();
   return (
     <>
       <div>

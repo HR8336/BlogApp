@@ -1,6 +1,5 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
-import { Routes, Route } from "react-router-loading";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import ContactUs from "./ContactUs";
 import { BrowserRouter } from "react-router-dom";
@@ -44,7 +43,6 @@ const ReactComponents = () => {
                   <AddBlog />
                 </PrivateRoute>
               }
-              loading
             />
             <Route
               path="/admin"
@@ -53,7 +51,6 @@ const ReactComponents = () => {
                   <AdminPage />
                 </PrivateRoute>
               }
-              loading
             />
             <Route
               path="/about"
@@ -62,7 +59,6 @@ const ReactComponents = () => {
                   <ContactUs />
                 </PublicRoute>
               }
-              loading
             />
             <Route
               path="/signup"
@@ -71,7 +67,6 @@ const ReactComponents = () => {
                   <Signup />
                 </PublicRoute>
               }
-              loading
             />
             <Route
               path="/login"
@@ -80,7 +75,6 @@ const ReactComponents = () => {
                   <Login />
                 </PublicRoute>
               }
-              loading
             />
             <Route
               path="/home/addblog"
@@ -89,7 +83,6 @@ const ReactComponents = () => {
                   <AddBlog />
                 </PrivateRoute>
               }
-              loading
             />
             <Route
               path="/profile"
@@ -98,7 +91,6 @@ const ReactComponents = () => {
                   <Profile />
                 </PrivateRoute>
               }
-              loading
             />
             <Route
               path="/home/allblog"
@@ -107,7 +99,6 @@ const ReactComponents = () => {
                   <AllBlog />
                 </PrivateRoute>
               }
-              loading
             />
             <Route
               path="/home/myblog"
@@ -116,7 +107,6 @@ const ReactComponents = () => {
                   <MyBlog />
                 </PrivateRoute>
               }
-              loading
             />
             <Route
               path="/home/saveblog"
@@ -125,7 +115,6 @@ const ReactComponents = () => {
                   <SavedBlog />
                 </PrivateRoute>
               }
-              loading
             />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BsFillSaveFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { GridBox } from "./MyBlog";
-import { useLoadingContext } from "react-router-loading";
+
 const SavedBlog = () => {
-  const loadingContext = useLoadingContext();
   const [getDatafromLs, setGetDatafromLs] = useState([]);
   const [getDataofAllUser, setGetDataofAllUser] = useState([]);
 
@@ -66,7 +65,6 @@ const SavedBlog = () => {
 
     localStorage.setItem("detail", JSON.stringify(arr));
   };
-  loadingContext.done();
 
   return (
     <>
