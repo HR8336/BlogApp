@@ -26,52 +26,53 @@ const MyBlog = () => {
 
   //localstorage ..........
 
-  // useEffect(() => {
-  //   const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
-  //   const getmail = JSON.parse(localStorage.getItem("email"));
+  useEffect(() => {
+    const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
+    const getmail = JSON.parse(localStorage.getItem("email"));
 
-  //   const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
+    const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
 
-  //   setGetDataAdd(filterdData);
-  // }, []);
+    setGetDataAdd(filterdData);
+  }, []);
 
   //firebase.........
 
-  useEffect(() => {
-    const getmail = JSON.parse(localStorage.getItem("email"));
-    const blogCollection = collection(db, "allBlog");
-    const getDataFromFb = async () => {
-      const dataOfMyBlog = await getDocs(blogCollection);
+  // useEffect(() => {
+  //   const getmail = JSON.parse(localStorage.getItem("email"));
+  //   const blogCollection = collection(db, "allBlog");
+  //   const getDataFromFb = async () => {
+  //     const dataOfMyBlog = await getDocs(blogCollection);
 
-      const data = dataOfMyBlog.docs.map((item) => ({
-        ...item.data(),
-        idforcred: item.id,
-      }));
+  //     const data = dataOfMyBlog.docs.map((item) => ({
+  //       ...item.data(),
+  //       idforcred: item.id,
+  //     }));
 
-      const filterdData = data.filter((ele) => ele.id === getmail);
+  //     const filterdData = data.filter((ele) => ele.id === getmail);
 
-      setGetDataAdd(filterdData);
-    };
+  //     setGetDataAdd(filterdData);
+  //   };
 
-    getDataFromFb();
-  }, []);
+  //   getDataFromFb();
+  // }, []);
+  // console.log(getDataAdd, "dtaaa of all");
 
-  const handleDelete = (hartsh) => {
+  const handleDelete = (index) => {
     //firebase.........
 
-    const blogCollection = doc(db, "allBlog", hartsh);
-    deleteDoc(blogCollection);
+    // const blogCollection = doc(db, "allBlog", idforcred);
+    // deleteDoc(blogCollection);
 
-    toast.success("Blog Deleted");
+    // toast.success("Blog Deleted");
 
     // using localstorage >>>>>>>>>>>>>.
 
-    // const updatedData = getDataAdd.filter((elem) => {
-    //   return index !== elem.idforcred;
-    // });
-    // setGetDataAdd(updatedData);
-    // localStorage.setItem("BlogData", JSON.stringify(updatedData));
-    // toast.success("Blog Deleted");
+    const updatedData = getDataAdd.filter((elem) => {
+      return index !== elem.idforcred;
+    });
+    setGetDataAdd(updatedData);
+    localStorage.setItem("BlogData", JSON.stringify(updatedData));
+    toast.success("Blog Deleted");
   };
   const handleEdit = (idforcred) => {
     navigate(`/home/addblog/${idforcred}`);
