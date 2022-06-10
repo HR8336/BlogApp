@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { ButtonCss, BoxWrap, InputCss, Heading } from "./Login";
+import { useLoadingContext } from "react-router-loading";
 
 const Profile = () => {
   const options = [
@@ -11,7 +12,7 @@ const Profile = () => {
     { label: "Fashion", value: "Fashion" },
     { label: "Health", value: "Health" },
   ];
-
+  const loadingContext = useLoadingContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
@@ -68,6 +69,7 @@ const Profile = () => {
     toast.success("Your Profile Edidted");
     localStorage.setItem("detail", JSON.stringify(arr));
   };
+  loadingContext.done();
 
   return (
     <>

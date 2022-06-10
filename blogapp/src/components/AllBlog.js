@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { MultiSelect } from "react-multi-select-component";
 import { useNavigate } from "react-router-dom";
 import { GridBox } from "./MyBlog";
+import { useLoadingContext } from "react-router-loading";
 
 const AllBlog = () => {
   const options = [
@@ -15,7 +16,7 @@ const AllBlog = () => {
     { label: "Fashion", value: "Fashion" },
     { label: "Health", value: "Health" },
   ];
-
+  const loadingContext = useLoadingContext();
   const [allData, setAllData] = useState([]); // Duplicate
   const [getDataAdd, setGetDataAdd] = useState([]); //all Data
   const [isRefresh, setIsRefresh] = useState(true);
@@ -228,6 +229,7 @@ const AllBlog = () => {
   const handleEdit = (idforcred) => {
     navigate(`/home/addblog/${idforcred}`);
   };
+  loadingContext.done();
 
   // Render Data
   return (

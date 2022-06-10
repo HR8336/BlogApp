@@ -2,8 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ButtonCss } from "./Login";
+import { useLoadingContext } from "react-router-loading";
 
 const Logout = () => {
+  const loadingContext = useLoadingContext();
   const navigate = useNavigate();
   const logout = (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ const Logout = () => {
     // localStorage.removeItem("SavedBlog");
     localStorage.setItem("isLoggedUser", false);
   };
+  loadingContext.done();
   return (
     <>
       <div>

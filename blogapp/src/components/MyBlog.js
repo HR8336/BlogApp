@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { collection, getDocs } from "firebase/firestore";
-import { async } from "@firebase/util";
 import { db } from "./firebase-config";
+import { useLoadingContext } from "react-router-loading";
 
 export const GridBox = styled.div`
   float: left;
@@ -21,6 +21,7 @@ export const GridBox = styled.div`
 `;
 
 const MyBlog = () => {
+  const loadingContext = useLoadingContext();
   const [getDataAdd, setGetDataAdd] = useState([]);
 
   const navigate = useNavigate();
@@ -59,10 +60,10 @@ const MyBlog = () => {
     };
 
     getDataFromFb();
-  }, []);
+  }, [blogCollection]);
 
   const handleDelete = (index) => {
-    const blogCollection = collection(db, "allBlog");
+    // const blogCollection = collection(db, "allBlog");
     const updatedData = getDataAdd.filter((elem) => {
       return index !== elem.idforcred;
     });
@@ -70,7 +71,7 @@ const MyBlog = () => {
     localStorage.setItem("BlogData", JSON.stringify(updatedData));
     toast.success("Blog Deleted");
   };
-
+  loadingContext.done();
   return (
     <>
       <div>
@@ -78,9 +79,6 @@ const MyBlog = () => {
           {getDataAdd.length !== 0 ? (
             <div>
               {getDataAdd.map((elem, id) => {
-                {
-                  console.log(elem);
-                }
                 return (
                   <GridBox
                     key={id}

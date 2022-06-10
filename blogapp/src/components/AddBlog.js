@@ -7,6 +7,7 @@ import { valueMaker } from "./helper";
 import { ButtonCss, BoxWrap, Heading, InputCss } from "./Login";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "./firebase-config";
+import { useLoadingContext } from "react-router-loading";
 
 const getLocaldata = () => {
   let list = localStorage.getItem("BlogData");
@@ -18,6 +19,7 @@ const getLocaldata = () => {
 };
 
 const AddBlog = () => {
+  const loadingContext = useLoadingContext();
   const params = useParams();
   const [detailofAdd, setDetailOfAdd] = useState(getLocaldata());
   const [title, setTitle] = useState("");
@@ -130,6 +132,7 @@ const AddBlog = () => {
   const onSelected = (data) => {
     setSelected(data);
   };
+  loadingContext.done();
 
   return (
     <>
