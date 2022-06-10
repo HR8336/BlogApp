@@ -29,10 +29,11 @@ const MyBlog = () => {
   useEffect(() => {
     const dataFromAdd = JSON.parse(localStorage.getItem("BlogData"));
     const getmail = JSON.parse(localStorage.getItem("email"));
+    if (dataFromAdd) {
+      const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
 
-    const filterdData = dataFromAdd.filter((ele) => ele.id === getmail);
-
-    setGetDataAdd(filterdData);
+      setGetDataAdd(filterdData);
+    }
   }, []);
 
   //firebase.........

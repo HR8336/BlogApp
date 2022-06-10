@@ -21,6 +21,9 @@ const Signup = () => {
   const [passWord, setPassWord] = useState("");
   const [selected, setSelected] = useState([]);
   const [dataOfMail, setDataOfMail] = useState([]);
+  const [mainBtn, setMainBtn] = useState(false);
+  const [subBtn, setSubBtn] = useState(false);
+  const [isSub, setIsSub] = useState(false);
 
   const navigate = useNavigate();
 
@@ -92,6 +95,31 @@ const Signup = () => {
   const onSelect = (data) => {
     setSelected(data);
   };
+
+  const main = () => {
+    if (mainBtn === true) {
+      setMainBtn(false);
+    } else {
+      setMainBtn(true);
+    }
+    console.log(mainBtn, "main");
+  };
+  const sub = () => {
+    if (subBtn === true) {
+      setSubBtn(false);
+    } else {
+      setSubBtn(true);
+    }
+    console.log(subBtn, "sub");
+  };
+  if (mainBtn === true && subBtn === false) {
+    setIsSub(false);
+    console.log(isSub, "isSub");
+  }
+  if (mainBtn === false && subBtn === true) {
+    setIsSub(true);
+    console.log(isSub, "isSub");
+  }
 
   return (
     <>
@@ -227,6 +255,28 @@ const Signup = () => {
               </p>
             </div>
           </form>
+          <div>
+            <input
+              type="checkbox"
+              id="vehicle1"
+              name="vehicle1"
+              value="Bike"
+              onClick={main}
+              defaultChecked
+            />
+            <label htmlFor="vehicle1"> main</label>
+            <br />
+            <input
+              type="checkbox"
+              id="vehicle2"
+              name="vehicle2"
+              value="Car"
+              onClick={sub}
+              defaultChecked
+            />
+            <label htmlFor="vehicle2">sub</label>
+            <br />
+          </div>
 
           <div>
             <p>
