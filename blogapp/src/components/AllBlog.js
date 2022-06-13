@@ -3,9 +3,10 @@ import { BsFillSaveFill } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import { MultiSelect } from "react-multi-select-component";
 import { useNavigate } from "react-router-dom";
 import { GridBox } from "./MyBlog";
+import "../css/noBlog.css";
+import { MultiSelectCss } from "./Profile";
 
 const AllBlog = () => {
   const options = [
@@ -240,12 +241,12 @@ const AllBlog = () => {
               value={search}
               onChange={handleOnSearch}
               placeholder="Search topic"
-              className="form-control"
+              className="form-control mt-4"
             />
           </div>
 
           <div className="form-outline mx-5">
-            <MultiSelect
+            <MultiSelectCss
               type="search"
               options={options}
               value={selected}
@@ -322,15 +323,8 @@ const AllBlog = () => {
           </>
         ) : (
           <>
-            <div className="mt-5">
-              <p
-                className="fs-2"
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                No Blogs
-              </p>
+            <div className="page-heading">
+              <h1>No Blogs</h1>
             </div>
           </>
         )}

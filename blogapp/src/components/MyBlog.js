@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import "../css/noBlog.css";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase-config";
 
@@ -120,15 +121,8 @@ const MyBlog = () => {
             </div>
           ) : (
             <>
-              <div className="mt-5">
-                <p
-                  className="fs-2"
-                  style={{
-                    textAlign: "center",
-                  }}
-                >
-                  No Blogs
-                </p>
+              <div className="page-heading">
+                <h1>No Blogs</h1>
               </div>
             </>
           )}

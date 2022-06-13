@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { valueMaker } from "../services/helper";
 import { ButtonCss, BoxWrap, Heading, InputCss } from "./Login";
+import { MultiSelectCss } from "./Profile";
 // import { addDoc, collection } from "firebase/firestore";
 // import { db } from "./firebase-config";
 
@@ -190,7 +190,7 @@ const AddBlog = () => {
                   <h6 className="mb-3">
                     Select Topic<span style={{ color: "red" }}> *</span>
                   </h6>
-                  <MultiSelect
+                  <MultiSelectCss
                     options={options}
                     value={selected}
                     onChange={onSelected}

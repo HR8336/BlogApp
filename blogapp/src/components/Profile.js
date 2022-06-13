@@ -2,6 +2,20 @@ import React, { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { ButtonCss, BoxWrap, InputCss, Heading } from "./Login";
+import styled from "styled-components";
+
+export const MultiSelectCss = styled(MultiSelect)`
+  display: block;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  margin: 14px auto;
+  color: #046772;
+  &:hover {
+    outline: 0;
+    border-color: #046772;
+  }
+`;
 
 const Profile = () => {
   const options = [
@@ -53,10 +67,10 @@ const Profile = () => {
       if (ele.email === getmail) {
         const userData = {
           ...ele,
-          name: name,
-          about: about,
-          mobile: mobile,
-          passWord: passWord,
+          name,
+          about,
+          mobile,
+          passWord,
           interstedValue: selected.map((el) => el.value),
         };
         arr.push(userData);
@@ -171,7 +185,7 @@ const Profile = () => {
               <h6 className="mb-3">
                 Select Topic<span style={{ color: "red" }}> *</span>
               </h6>
-              <MultiSelect
+              <MultiSelectCss
                 options={options}
                 value={selected}
                 onChange={onSelected}

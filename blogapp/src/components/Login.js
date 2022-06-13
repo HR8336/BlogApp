@@ -25,16 +25,16 @@ export const InputCss = styled.input`
   width: 100%;
   margin: 14px auto;
   border-radius: 20px;
-  color: #004b66;
+  color: #046772;
   border: 2px solid #ccc;
   &:hover {
     outline: 0;
-    border-color: #f8c8dc;
+    border-color: #046772;
   }
 `;
 
 export const Heading = styled.h2`
-  color: #000066;
+  color: #046772;
   font-family: "Open Sans", sans-serif;
   font-size: 34px;
   font-weight: 300;
@@ -56,7 +56,7 @@ export const ButtonCss = styled.button`
   &:hover {
     color: #000000 !important;
     border-radius: 50px;
-    border-color: #f8c8dc !important;
+    border-color: #046772 !important;
     transition: all 0.6s ease 0s;
   }
 `;

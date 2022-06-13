@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import AdminPage from "./AdminPage";
 import PublicRoute from "./PublicRoute";
 import Profile from "./Profile";
+import "../css/Navbar.css";
 
 const ReactComponents = () => {
   // const isLogged = localStorage.getItem("isLoggedUser");

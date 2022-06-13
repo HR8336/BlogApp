@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BsFillSaveFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { GridBox } from "./MyBlog";
+import "../css/noBlog.css";
 
 const SavedBlog = () => {
   const [getDatafromLs, setGetDatafromLs] = useState([]);
@@ -104,15 +105,8 @@ const SavedBlog = () => {
           </>
         ) : (
           <>
-            <div className="mt-5">
-              <p
-                className="fs-2"
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                No Blogs
-              </p>
+            <div className="page-heading">
+              <h1>No Blogs</h1>
             </div>
           </>
         )}

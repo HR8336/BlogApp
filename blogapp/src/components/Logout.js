@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ButtonCss } from "./Login";
+import { ButtonOfNav } from "./Navbar";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -19,9 +19,9 @@ const Logout = () => {
   return (
     <>
       <div>
-        <ButtonCss className="me-2" onClick={logout}>
+        <ButtonOfNav className="me-2" onClick={logout}>
           Logout
-        </ButtonCss>
+        </ButtonOfNav>
       </div>
     </>
   );

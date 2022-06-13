@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { MultiSelect } from "react-multi-select-component";
 import { toast } from "react-toastify";
 import { BoxWrap, InputCss, ButtonCss, Heading } from "./Login.js";
+import { MultiSelectCss } from "./Profile";
 
 const Signup = () => {
   const options = [
@@ -20,64 +20,64 @@ const Signup = () => {
   const [about, setAbout] = useState("");
   const [passWord, setPassWord] = useState("");
   const [selected, setSelected] = useState([]);
-  const [dataOfMail, setDataOfMail] = useState([]);
-  const [mainBtn, setMainBtn] = useState(false);
-  const [subBtn, setSubBtn] = useState(false);
-  const [isSub, setIsSub] = useState(false);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getDataOfMail = localStorage.getItem("detail");
-    if (getDataOfMail !== null) setDataOfMail(JSON.parse(getDataOfMail));
-  }, []);
-
   const submitData = (e) => {
     e.preventDefault();
-    const mailofdata = dataOfMail.map((elm) => elm.email);
-    const mobileofData = dataOfMail.map((elm) => elm.mobile);
+    const mailofdata = detail.map((elm) => elm.email);
+    const mobileofData = detail.map((elm) => elm.mobile);
     if (mailofdata.includes(email)) {
       toast.warn("Already Email Exisits!!");
     } else if (mobileofData.includes(mobile)) {
       toast.warn("Already Mobile No. Exisitis!!");
     } else {
       if (name !== "") {
-        if (email !== "") {
-          if (selected.some((obj) => obj)) {
-            if (passWord !== "") {
-              let interstedValue = [];
-              selected.forEach((obj) => interstedValue.push(obj.value));
+        if (
+          email !== "" &&
+          email.match(
+            /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+          )
+        ) {
+          if (mobile === "" || mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
+            if (selected.some((obj) => obj)) {
+              if (passWord !== "") {
+                let interstedValue = [];
+                selected.forEach((obj) => interstedValue.push(obj.value));
 
-              let data = {
-                name,
-                email,
-                mobile,
-                about,
-                passWord,
-                interstedValue,
-              };
+                let data = {
+                  name,
+                  email,
+                  mobile,
+                  about,
+                  passWord,
+                  interstedValue,
+                };
 
-              const totalData = [...detail, data];
-              setDetail(totalData);
-              setName("");
-              setEmail("");
-              setMobile("");
-              setAbout("");
-              setPassWord("");
-              setSelected([]);
+                const totalData = [...detail, data];
+                setDetail(totalData);
+                setName("");
+                setEmail("");
+                setMobile("");
+                setAbout("");
+                setPassWord("");
+                setSelected([]);
 
-              localStorage.setItem("detail", JSON.stringify(totalData));
+                localStorage.setItem("detail", JSON.stringify(totalData));
 
-              toast.success("Successfully Signup!");
-              navigate("/login");
+                toast.success("Successfully Signup!");
+                navigate("/login");
+              } else {
+                toast.warn("Please Enter Password!");
+              }
             } else {
-              toast.warn("Please Enter Password!");
+              toast.warn("Please Select atleast one Interest!");
             }
           } else {
-            toast.warn("Please Select atleast one Interest!");
+            toast.warn("Enter Valid Number");
           }
         } else {
-          toast.warn("Please Enter Your Email!");
+          toast.warn("Please Enter Valid Email!");
         }
       } else {
         toast.warn("Please Enter Your Name!");
@@ -95,31 +95,6 @@ const Signup = () => {
   const onSelect = (data) => {
     setSelected(data);
   };
-
-  const main = () => {
-    if (mainBtn === true) {
-      setMainBtn(false);
-    } else {
-      setMainBtn(true);
-    }
-    console.log(mainBtn, "main");
-  };
-  const sub = () => {
-    if (subBtn === true) {
-      setSubBtn(false);
-    } else {
-      setSubBtn(true);
-    }
-    console.log(subBtn, "sub");
-  };
-  if (mainBtn === true && subBtn === false) {
-    setIsSub(false);
-    console.log(isSub, "isSub");
-  }
-  if (mainBtn === false && subBtn === true) {
-    setIsSub(true);
-    console.log(isSub, "isSub");
-  }
 
   return (
     <>
@@ -223,7 +198,7 @@ const Signup = () => {
                 Select Interest <span style={{ color: "red" }}>*</span>
               </p>
 
-              <MultiSelect
+              <MultiSelectCss
                 options={options}
                 value={selected}
                 onChange={onSelect}
@@ -255,29 +230,6 @@ const Signup = () => {
               </p>
             </div>
           </form>
-          <div>
-            <input
-              type="checkbox"
-              id="vehicle1"
-              name="vehicle1"
-              value="Bike"
-              onClick={main}
-              defaultChecked
-            />
-            <label htmlFor="vehicle1"> main</label>
-            <br />
-            <input
-              type="checkbox"
-              id="vehicle2"
-              name="vehicle2"
-              value="Car"
-              onClick={sub}
-              defaultChecked
-            />
-            <label htmlFor="vehicle2">sub</label>
-            <br />
-          </div>
-
           <div>
             <p>
               <span style={{ color: "red" }}>*</span>Required Field
