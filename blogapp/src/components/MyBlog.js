@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import "../css/noBlog.css";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+// import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 export const GridBox = styled.div`
