@@ -1,4 +1,4 @@
-// for refrence without using props lengthy code insrtead of visit navbar folder where optimize code is there
+// for refrence without using props lengthy code instead of visit navbar folder where optimize code is there
 
 // import React, { useState } from "react";
 // import { Link, useLocation, useNavigate } from "react-router-dom";
