@@ -18,6 +18,26 @@ export const BoxWrap = styled.div`
   color: #414141;
 `;
 
+export const ButtonOfNav = styled.button`
+  font-family: "Open Sans";
+  color: #ffffff;
+  text-transform: uppercase;
+  background: #000;
+  padding: 10px;
+  border: 4px solid #8c8c8c;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  &:hover {
+    color: #000;
+    border-radius: 50px;
+    border-color: #ffffff;
+    background: #ffffff;
+    transition: all 0.6s ease 0s;
+  }
+`;
+
 export const InputCss = styled.input`
   display: block;
   box-sizing: border-box;

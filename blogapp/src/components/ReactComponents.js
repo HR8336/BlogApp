@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../navbar/Navbar";
 import ContactUs from "./ContactUs";
 import { BrowserRouter } from "react-router-dom";
 import Signup from "./Signup";
@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddBlog from "./AddBlog";
 import AllBlog from "./AllBlog";
 import MyBlog from "./MyBlog";
+import AdminRoute from "./AdminRoute";
 import SavedBlog from "./SavedBlog";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -48,9 +49,9 @@ const ReactComponents = () => {
             <Route
               path="/admin"
               element={
-                <PrivateRoute>
+                <AdminRoute>
                   <AdminPage />
-                </PrivateRoute>
+                </AdminRoute>
               }
             />
             <Route

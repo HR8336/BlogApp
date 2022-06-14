@@ -57,7 +57,6 @@ const MyBlog = () => {
 
   //   getDataFromFb();
   // }, []);
-  // console.log(getDataAdd, "dtaaa of all");
 
   const handleDelete = (index) => {
     //firebase.........

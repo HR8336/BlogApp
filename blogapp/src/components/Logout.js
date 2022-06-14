@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { ButtonOfNav } from "./Navbar";
+import { ButtonOfNav } from "./Login";
 
 const Logout = () => {
   const navigate = useNavigate();
