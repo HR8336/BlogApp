@@ -1,0 +1,9 @@
+.boxWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    margin: 100px auto 0 auto;
+    padding: 25px;
+    color: #414141;
+}
