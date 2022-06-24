@@ -12,7 +12,6 @@ const Form = () => {
   const defaultValue = {
     name : '',
     email: '',
-    category: '',
   }
     const options = [
         {  label: 'Health' , value: 'Health'},
@@ -21,8 +20,8 @@ const Form = () => {
        ];
     const schema = yup.object().shape({
         email: yup.string().email("Enter valid email").required("Please Enter Email"),
-        name: yup.string().min(4 , "name is no less then 4 char").max(32 , "name is not more then 32 char").required(),
-        category : yup.object().required("select atleast one interest")
+        name: yup.string().max(32 , "name is not more then 32 char").required("please Enter name").min(4 , "name is no less then 4 char"),
+        category : yup.object().required()
       }); 
         const { register, handleSubmit, formState: { errors } , reset ,control , watch  } = useForm({
           mode : "onBlur",
@@ -43,7 +42,6 @@ const Form = () => {
               {...register("name" , {onBlur : () => console.log(watch('name')) })}
               placeholder="name"
               type="text"
-              required
             />
             <p>{errors.name?.message}</p>
             <br />
@@ -66,7 +64,7 @@ const Form = () => {
                      />
             )}             
              />
-            <p>{errors.category?.message}</p>
+            <p>{errors.category&& ("Please select atleast one")}</p>
             <br/>
             <div>
                   <input name="ch1" type="checkbox" {...register('ch1' , {onBlur : () => console.log(watch('ch1'))})}/>
